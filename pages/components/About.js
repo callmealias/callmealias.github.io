@@ -9,7 +9,7 @@ export default function About() {
   return (
     <section id="about" className="bg-[#1E1E1E] py-20">
       <div className="container mx-auto px-4">
-        <h2 className="section-title">About Me</h2>
+        <h2 className="section-title">About Kashif Ok</h2>
         
         <div className="flex flex-col md:flex-row gap-8 mt-12">
           <motion.div 
@@ -26,11 +26,11 @@ export default function About() {
             </p>
             
             <p className="mb-4">
-              Throughout my career, I've maintained a strong focus on design patterns, SOLID principles, and cloud technologies (AWS/Google Cloud). I'm passionate about leveraging test-driven development (TDD) and Agile methodologies to deliver high-quality software solutions.
+              Throughout my career, I&lsquo;ve maintained a strong focus on design patterns, SOLID principles, and cloud technologies (AWS/Google Cloud). I&lsquo;m passionate about leveraging test-driven development (TDD) and Agile methodologies to deliver high-quality software solutions.
             </p>
             
             <p className="mb-4">
-              Recently, I've been at the forefront of AI adoption, working with cutting-edge tools like ChatGPT, Claude, Gemini, and Suno to enhance development processes and create innovative solutions.
+              Recently, I&lsquo;ve been at the forefront of AI adoption, working with cutting-edge tools like ChatGPT, Claude, Gemini, and Suno to enhance development processes and create innovative solutions.
             </p>
             
             <p>

@@ -6,9 +6,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Handle scroll to change navbar background
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 20) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -16,86 +17,79 @@ export default function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <motion.header
-      className={`fixed w-full z-10 ${
-        scrolled ? 'bg-[#1E1E1E] shadow-lg' : 'bg-transparent'
-      }`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      className={`fixed top-0 left-0 w-full z-50 ${
+        scrolled ? 'bg-gray-900/90 backdrop-blur-md' : 'bg-transparent'
+      } transition-all duration-300`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      style={{
-        transition: 'background-color 0.5s ease',
-      }}
     >
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/#home" className="text-xl font-bold text-[#D3D3D3] no-underline">
-          Kashif Hasan
-        </Link>
-        
-        <button
-          className="md:hidden bg-transparent border-none text-[#D3D3D3]"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo / Name */}
+          <Link href="/#home" className="text-xl font-bold text-white hover:text-blue-400 transition-colors">
+            Kashif Hasan
+          </Link>
+
+          {/* Hamburger Menu for Mobile */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-white hover:text-blue-400 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {menuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <nav
+            className={`
+              ${menuOpen ? 'block' : 'hidden'}
+              md:flex md:items-center md:space-x-6
+              absolute md:static top-16 left-0 w-full md:w-auto bg-gray-900 md:bg-transparent p-4 md:p-0
+            `}
           >
-            {menuOpen ? (
-              <path d="M18 6L6 18M6 6l12 12" />
-            ) : (
-              <path d="M3 12h18M3 6h18M3 18h18" />
-            )}
-          </svg>
-        </button>
-        
-        <nav
-          className={`${
-            menuOpen
-              ? 'flex flex-col absolute top-16 left-0 right-0 bg-[#1E1E1E] shadow-lg p-4'
-              : 'hidden'
-          } md:flex md:flex-row md:items-center md:relative md:top-0 md:bg-transparent md:shadow-none`}
-        >
-          {['home', 'about', 'experience', 'skills', 'projects', 'resume', 'contact'].map(
-            (item) => (
+            {['home', 'about', 'experience', 'skills', 'projects', 'resume', 'contact'].map((item) => (
               <Link
                 key={item}
                 href={`/#${item}`}
-                className="px-4 py-2 md:py-0 text-[#D3D3D3] capitalize transition duration-300 hover:text-[#4682B4] relative nav-link"
+                className="block md:inline-block text-white hover:text-blue-400 transition-colors py-2 md:py-0"
                 onClick={() => setMenuOpen(false)}
-                style={{
-                  position: 'relative',
-                }}
               >
-                {item}
-                <span
-                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#4682B4] transition-all duration-300 nav-underline"
-                  style={{
-                    transition: 'width 0.3s ease',
-                  }}
-                />
+                {item.charAt(0).toUpperCase() + item.slice(1)}
               </Link>
-            )
-          )}
-        </nav>
+            ))}
+          </nav>
+        </div>
       </div>
-      <style jsx>{`
-        .nav-link:hover .nav-underline {
-          width: 100%;
-        }
-      `}</style>
     </motion.header>
   );
 }

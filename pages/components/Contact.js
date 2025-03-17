@@ -43,7 +43,7 @@ export default function Contact() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
-                <p className="text-lg">Your message has been sent successfully. I'll get back to you soon.</p>
+                <p className="text-lg">Your message has been sent successfully. I&lsquo;ll get back to you soon.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit}>

@@ -1,3 +1,5 @@
+/* styles/globals.css */
+@import "tailwindcss";
 :root {
   --dark-slate-gray: #2F4F4F;
   --light-gray: #D3D3D3;
