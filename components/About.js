@@ -22,7 +22,7 @@ export default function About() {
             <h3 className="text-2xl font-bold mb-4">Kashif Hasan – Senior Software Engineering Leader</h3>
             
             <p className="mb-4">
-              With 25 years of experience in software engineering, I specialize in designing and building robust, scalable systems across various domains. My expertise spans system architecture, distributed computing, cloud services, and AI-driven development.
+              With 25 years of experience in software engineering, I specialize in designing and building robust, scalable systems across various domains. My expertise spans system architecture, distributed computing, cloud services, and AI-driven development and creating buisness value.
             </p>
             
             <p className="mb-4">
