@@ -8,8 +8,6 @@ export default function Hero() {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
-      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-      
       <div className="container relative z-1 mx-auto px-4 text-center">
         <motion.h1 
           className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
@@ -26,7 +24,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Senior Software Engineering Leader
+          Software Developer
         </motion.h2>
         
         <motion.p 
@@ -51,7 +49,7 @@ export default function Hero() {
             Explore Projects
           </Link>
           <Link href="/#contact" className="button">
-            Contact Me
+            Contact
           </Link>
         </motion.div>
         
