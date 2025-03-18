@@ -24,7 +24,7 @@ export default function Footer() {
               </svg>
             </a>
             <a 
-              href="https://github.com/kashifhasan" 
+              href="https://github.com/callmealias" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-[#D3D3D3] hover:text-[#4682B4] transition-all duration-300"

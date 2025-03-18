@@ -75,7 +75,7 @@ export default function Hero() {
               </svg>
             </a>
             <a 
-              href="https://github.com/kashifhasan" 
+              href="https://github.com/callmealias" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-blue-400 transition-all duration-300"
