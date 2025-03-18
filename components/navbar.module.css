@@ -3,10 +3,11 @@
     display: grid;
     grid-template-rows: auto 1fr;
     transition: background-color 0.3s ease-in-out;
+    background-color: transparent;
   }
   
   .scrolled {
-    background-color: rgba(17, 24, 39, 0.8); /* gray-900 with opacity */
+    background-color: transparent;
   }
   
   .logoContainer {
@@ -22,7 +23,7 @@
   }
   
   .rockAnimation {
-    animation: rock 1s ease-in-out;
+    animation: rock 0.75s ease-in-out; /* Adjusted to 0.75s */
   }
   
   @keyframes rock {
@@ -34,26 +35,30 @@
   
   .menu {
     display: grid;
-    gap: 0.5rem;
-    transform: translateX(100%); /* Hidden offscreen by default */
-    opacity: 0;
-    transition: transform 1s ease-in-out, opacity 0.3s ease-in-out;
+    gap: 0.1rem;
+    transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out; /* Adjusted to 0.75s */
+    padding: 0.1rem 0;
   }
   
   .expanded {
-    transform: translateX(0); /* Slide in when expanded */
+    transform: translateX(0);
     opacity: 1;
   }
   
   .navItem {
     color: white;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 500;
     text-decoration: none;
+    background-color: rgba(55, 65, 81, 0.9);
+    padding: 0.1rem 0.5rem;
+    text-align: right;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 0.25rem;
   }
   
   .navItem:hover {
-    background-color: #374151; /* gray-700 */
+    background-color: rgba(75, 85, 99, 0.95);
   }
   
   /* Mobile (≤ 639px) */
@@ -63,11 +68,13 @@
       height: auto;
       position: sticky;
       top: 0;
-      grid-template-columns: auto 1fr; /* Logo + space */
+      grid-template-columns: auto 1fr;
       grid-template-rows: auto;
       grid-template-areas: "logo menu";
       padding: 0 1rem;
       align-items: center;
+      background-color: transparent;
+      z-index: 1000;
     }
   
     .logoContainer {
@@ -78,12 +85,13 @@
       grid-area: menu;
       position: absolute;
       top: 100%;
-      left: 0;
-      width: 100%;
-      background-color: rgba(17, 24, 39, 0.95);
-      padding: 1rem;
-      transform: translateX(100%); /* Offscreen to the right */
+      right: 0; /* Align to the right */
+      width: 50%; /* Adjust width to keep it compact on the right */
+      background-color: rgba(31, 41, 55, 0.9);
+      padding: 0.5rem;
+      transform: translateX(100%); /* Slide in from the right */
       opacity: 0;
+      transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out; /* Adjusted to 0.75s */
     }
   
     .expanded {
@@ -92,9 +100,9 @@
     }
   
     .navItem {
-      padding: 0.5rem 1rem;
-      text-align: left;
-      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      text-align: right; /* Keep text aligned right for consistency */
+      border-radius: 0.25rem;
     }
   }
   
@@ -107,6 +115,7 @@
       right: 0;
       top: 0;
       grid-template-rows: auto 1fr;
+      background-color: transparent;
     }
   
     .logoContainer {
@@ -114,9 +123,12 @@
     }
   
     .menu {
-      padding-right: 0.75rem;
-      transform: translateX(120px); /* Offscreen by its width */
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      transform: translateX(120px);
       opacity: 0;
+      background-color: rgba(31, 41, 55, 0.9);
+      transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out; /* Adjusted to 0.75s */
     }
   
     .expanded {
@@ -125,9 +137,9 @@
     }
   
     .navItem {
-      padding: 0.5rem 0.75rem;
+      padding: 0.1rem 0.75rem;
       text-align: right;
-      border-radius: 0.5rem 0 0 0.5rem;
+      border-radius: 0.25rem;
     }
   }
   
@@ -140,6 +152,7 @@
       right: 0;
       top: 0;
       grid-template-rows: auto 1fr;
+      background-color: transparent;
     }
   
     .logoContainer {
@@ -147,9 +160,12 @@
     }
   
     .menu {
-      padding-right: 0.5rem;
-      transform: translateX(80px); /* Offscreen by its width */
+      padding-right: 0.25rem;
+      padding-left: 0.25rem;
+      transform: translateX(80px);
       opacity: 0;
+      background-color: rgba(31, 41, 55, 0.9);
+      transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out; /* Adjusted to 0.75s */
     }
   
     .expanded {
@@ -158,8 +174,8 @@
     }
   
     .navItem {
-      padding: 0.25rem 0.75rem;
+      padding: 0.1rem 0.5rem;
       text-align: right;
-      border-radius: 0.5rem 0 0 0.5rem;
+      border-radius: 0.25rem;
     }
   }

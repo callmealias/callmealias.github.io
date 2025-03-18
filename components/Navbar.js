@@ -18,32 +18,44 @@ export default function Navbar() {
 
   const handleLogoClick = () => {
     setIsRocking(true);
-    setIsExpanded(true); // Expand on click
+    setIsExpanded(!isExpanded); // Toggle menu on mobile and other views
     setTimeout(() => setIsRocking(false), 1000);
   };
 
-  const handleLogoHover = () => {
-    setIsExpanded(true);
-    if (!isRocking) {
-      setIsRocking(true);
-      setTimeout(() => setIsRocking(false), 1000);
+  const handleNavHover = () => {
+    if (window.innerWidth > 639) { // Only expand on hover for non-mobile
+      setIsExpanded(true);
+      if (!isRocking) {
+        setIsRocking(true);
+        setTimeout(() => setIsRocking(false), 1000);
+      }
     }
   };
 
-  const handleLogoLeave = () => {
-    setIsExpanded(false);
+  const handleNavLeave = () => {
+    if (window.innerWidth > 639) { // Only collapse on leave for non-mobile
+      setIsExpanded(false);
+    }
+  };
+
+  const handleMenuClick = () => {
+    if (window.innerWidth <= 639) { // Close menu after clicking a link on mobile
+      setIsExpanded(false);
+    }
   };
 
   const navItems = ['home', 'about', 'experience', 'skills', 'projects', 'resume', 'contact'];
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <nav
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}
+      onMouseEnter={handleNavHover}
+      onMouseLeave={handleNavLeave}
+    >
       <div className={styles.logoContainer}>
         <div
           className={`${styles.logo} ${isRocking ? styles.rockAnimation : ''}`}
           onClick={handleLogoClick}
-          onMouseEnter={handleLogoHover}
-          onMouseLeave={handleLogoLeave}
         >
           <Image
             src="/ksh-dev-new.png"
@@ -62,6 +74,7 @@ export default function Navbar() {
             key={item}
             href={`/#${item}`}
             className={styles.navItem}
+            onClick={handleMenuClick} // Close menu on mobile after clicking
           >
             {item.charAt(0).toUpperCase() + item.slice(1)}
           </Link>
