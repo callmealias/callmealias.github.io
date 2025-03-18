@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Hero() {
   return (
     <section id="home" className="relative h-screen flex items-center justify-center" style={{
-      backgroundImage: "url('/images/kashif-photo.jpg')",
+      backgroundImage: "url('/images/kashif-photo-new.jpg')",
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
