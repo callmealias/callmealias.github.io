@@ -1,0 +1,127 @@
+/* hero.module.css - Increased Font Sizes */
+
+.heroSection {
+    grid-area: hero;
+    position: relative;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: grid;
+    gap: 0.5rem; /* Adjust as needed */
+    text-align: center;
+}
+
+.heroTitle {
+    color: white;
+    font-weight: bold;
+    grid-area: title-area;
+}
+
+.heroSubtitle {
+    color: white;
+    grid-area: subtitle-area;
+}
+
+.heroDescription {
+    color: rgba(249, 250, 251, 0.8);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-area: description-area;
+}
+
+.blankArea {
+    grid-area: blank-area;
+}
+
+.heroButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    grid-area: buttons-area;
+}
+
+.heroSocials {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    grid-area: socials-area;
+}
+
+.heroSocials a {
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+.heroSocials a:hover {
+    color: #60a5fa;
+}
+
+
+/* Mobile (≤ 639px) */
+@media (max-width: 639px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
+        grid-template-areas:
+            "title-area"
+            "subtitle-area"
+            "description-area"
+            "blank-area"
+            "buttons-area"
+            "socials-area";
+    }
+    .heroTitle { font-size: 4rem; } /* Increased mobile title size */
+    .heroSubtitle { font-size: 2rem; } /* Increased mobile subtitle size */
+    .heroDescription { font-size: 1.2rem; } /* Increased mobile description size */
+    .blankArea { min-height: 2rem; }
+}
+
+/* Narrow (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
+        grid-template-areas:
+            "title-area"
+            "subtitle-area"
+            "description-area"
+            "blank-area"
+            "buttons-area"
+            "socials-area";
+    }
+    .heroTitle { font-size: 6rem; } /* Increased narrow title size */
+    .heroSubtitle { font-size: 3rem; } /* Increased narrow subtitle size */
+    .heroDescription { font-size: 1.5rem; } /* Increased narrow description size */
+    .blankArea { min-height: 8rem; }
+}
+
+/* Wide (≥ 1024px) */
+@media (min-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
+        grid-template-areas:
+            "title-area"
+            "subtitle-area"
+            "description-area"
+            "blank-area"
+            "buttons-area"
+            "socials-area";
+    }
+    .heroTitle { font-size: 5rem; } /* Increased wide title size */
+    .heroSubtitle { font-size: 3rem; } /* Increased wide subtitle size */
+    .heroDescription { font-size: 1.5rem; } /* Increased wide description size */
+    .blankArea { min-height: 12rem; }
+}
