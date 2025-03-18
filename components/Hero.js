@@ -23,19 +23,10 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Software Guy
+          Software Dev
         </motion.h2>
 
         <motion.div className={styles.blankArea}></motion.div> {/* Blank area div */}
-
-        <motion.p
-          className={`${styles.heroDescription} text-gray-100`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          AI Driven Software Developer, Techie, Yogi, Traveller, Artist
-        </motion.p>
 
         <motion.div
           className={styles.heroButtons}

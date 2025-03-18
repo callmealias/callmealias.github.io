@@ -17,7 +17,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     display: grid;
-    gap: 0.5rem; /* Adjust as needed */
+    gap: .5rem; /* Adjust as needed */
     text-align: center;
 }
 
@@ -82,10 +82,10 @@
             "buttons-area"
             "socials-area";
     }
-    .heroTitle { font-size: 4rem; } /* Increased mobile title size */
-    .heroSubtitle { font-size: 2rem; } /* Increased mobile subtitle size */
+    .heroTitle { font-size: 3rem; } /* Increased mobile title size */
+    .heroSubtitle { font-size: 1.5rem; } /* Increased mobile subtitle size */
     .heroDescription { font-size: 1.2rem; } /* Increased mobile description size */
-    .blankArea { min-height: 2rem; }
+    .blankArea { min-height: 6rem; }
 }
 
 /* Narrow (640px - 1023px) */
@@ -101,10 +101,10 @@
             "buttons-area"
             "socials-area";
     }
-    .heroTitle { font-size: 6rem; } /* Increased narrow title size */
-    .heroSubtitle { font-size: 3rem; } /* Increased narrow subtitle size */
-    .heroDescription { font-size: 1.5rem; } /* Increased narrow description size */
-    .blankArea { min-height: 8rem; }
+    .heroTitle { font-size: 3.5rem; } /* Increased narrow title size */
+    .heroSubtitle { font-size: 2rem; } /* Increased narrow subtitle size */
+    .heroDescription { font-size: 1rem; } /* Increased narrow description size */
+    .blankArea { min-height: 12rem; }
 }
 
 /* Wide (≥ 1024px) */
