@@ -1,112 +1,72 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import styles from './navbar.module.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState(null);
+  const [isRocking, setIsRocking] = useState(false);
 
-  // Handle scroll to change navbar background
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLogoClick = () => {
+    setIsRocking(true);
+    setIsExpanded(true); // Expand on click
+    setTimeout(() => setIsRocking(false), 1000);
+  };
+
+  const handleLogoHover = () => {
+    setIsExpanded(true);
+    if (!isRocking) {
+      setIsRocking(true);
+      setTimeout(() => setIsRocking(false), 1000);
+    }
+  };
+
+  const handleLogoLeave = () => {
+    setIsExpanded(false);
+  };
+
   const navItems = ['home', 'about', 'experience', 'skills', 'projects', 'resume', 'contact'];
 
   return (
-    <div 
-      className="fixed left-0 top-0 h-full z-50 bg-transparent transition-all duration-300 ease-in-out w-20"
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
-    >
-      <div className="flex flex-col h-full justify-between py-6 overflow-visible">
-        {/* Logo / Brand */}
-        <div className="flex justify-center items-center mb-8">
-          <motion.div 
-            className="relative w-12 h-12"
-            animate={isExpanded ? { rotate: 360 } : { rotate: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-          >
-            <Image 
-              src="/ksh-dev-logo.png" 
-              alt="KSH Dev" 
-              layout="fill" 
-              objectFit="contain" 
-              className="cursor-pointer"
-            />
-          </motion.div>
+    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+      <div className={styles.logoContainer}>
+        <div
+          className={`${styles.logo} ${isRocking ? styles.rockAnimation : ''}`}
+          onClick={handleLogoClick}
+          onMouseEnter={handleLogoHover}
+          onMouseLeave={handleLogoLeave}
+        >
+          <Image
+            src="/ksh-dev-new.png"
+            alt="KSH Dev"
+            width={40}
+            height={40}
+            className="object-contain"
+            priority
+          />
         </div>
-
-        {/* Navigation Links - Vertical */}
-        <nav className="flex flex-col space-y-6 flex-grow">
-          {navItems.map((item, index) => (
-            <div key={item} className="relative h-8">
-              {/* Link with a clickable area but invisible */}
-              <Link
-                href={`/#${item}`}
-                className="absolute inset-0 z-20 cursor-pointer"
-                onMouseEnter={() => setHoveredItem(item)}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                <span className="sr-only">{item}</span>
-              </Link>
-              
-              {/* Visual cue for link (small dot) */}
-              <div className="w-2 h-2 bg-white rounded-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-              
-              {/* Text that appears on hover */}
-              <AnimatePresence>
-                {isExpanded && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ 
-                      duration: 0.3, 
-                      delay: index * 0.1 // Staggered delay for top-to-bottom effect
-                    }}
-                    className="absolute left-20 top-0 bg-gray-800 px-4 py-2 rounded-r-md whitespace-nowrap z-10 pointer-events-none"
-                  >
-                    <div className="flex text-white">
-                      {(item.charAt(0).toUpperCase() + item.slice(1)).split('').map((char, idx) => (
-                        <motion.span
-                          key={idx}
-                          initial={{ y: 0 }}
-                          animate={hoveredItem === item ? { y: [-5, 0] } : { y: 0 }}
-                          transition={{ 
-                            duration: 0.3, 
-                            type: "spring", 
-                            stiffness: 300, 
-                            damping: 10,
-                            delay: idx * 0.05 
-                          }}
-                          className="inline-block"
-                        >
-                          {char}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </nav>
-        
-        {/* Extra space at bottom for better balance */}
-        <div className="h-12"></div>
       </div>
-    </div>
+
+      <div className={`${styles.menu} ${isExpanded ? styles.expanded : ''}`}>
+        {navItems.map((item) => (
+          <Link
+            key={item}
+            href={`/#${item}`}
+            className={styles.navItem}
+          >
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </Link>
+        ))}
+      </div>
+    </nav>
   );
 }

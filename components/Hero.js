@@ -29,7 +29,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Software Developer
+            Software Guy
           </motion.h2>
           
           <motion.p 
@@ -38,7 +38,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Seasoned software engineering leader with 25 years of experience in system architecture, distributed computing, cloud services, and AI-driven development.
+
+            AI Driven Software Developer, Techie, Yogi, Traveller, Artist
           </motion.p>
           
           <motion.div 
@@ -65,7 +66,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <a 
-              href="https://www.linkedin.com/in/kashif-hasan" 
+              href="https://www.linkedin.com/in/kashif-hasan-473a811/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-blue-400 transition-all duration-300"

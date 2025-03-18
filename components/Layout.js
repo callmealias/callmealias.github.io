@@ -12,9 +12,11 @@ export default function Layout({ children }) {
         <meta name="keywords" content="senior software engineer, cloud architect, AI consultant, software consultant, system architecture, distributed computing" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
+      <div className="grid-container">
+        <Navbar />
+        <main>{children}</main>   
+      </div>
+      <Footer />     
     </>
   );
 }

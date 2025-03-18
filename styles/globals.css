@@ -1,6 +1,39 @@
 /* styles/globals.css */
 @import "tailwindcss";
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: single column */
+  grid-template-rows: auto 1fr; /* Navbar, then main */
+  grid-template-areas:
+    "navbar"
+    "main";
+  min-height: 100vh;
+}
+
+.main-content {
+  grid-area: main;
+}
+
+/* Narrow layout (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .grid-container {
+    grid-template-columns: 1fr 120px; /* Main + wider navbar */
+    grid-template-areas:
+      "main navbar";
+  }
+}
+
+/* Wide layout (1024px and up) */
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 1fr 80px; /* Main + narrow navbar */
+    grid-template-areas:
+      "main navbar";
+  }
+}
+
+
 :root {
   --dark-slate-gray: #2F4F4F;
   --light-gray: #D3D3D3;
