@@ -1,0 +1,141 @@
+/* about.module.css */
+
+.aboutSection {
+    background-color: #1E1E1E;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    color: var(--light-gray);
+  }
+  
+  .aboutContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .aboutText {
+    width: 100%;
+    background-color: rgba(55, 65, 81, 0.1);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .aboutHeading {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: white;
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+  
+  .aboutHeading:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 3rem;
+    height: 3px;
+    background-color: #4682B4;
+  }
+  
+  .aboutParagraph {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .aboutSidebar {
+    width: 100%;
+  }
+  
+  .languageCard {
+    background-color: #2F4F4F;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .cardHeading {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: white;
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+  
+  .cardHeading:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2rem;
+    height: 3px;
+    background-color: #4682B4;
+  }
+  
+  .languageItem {
+    margin-bottom: 1.5rem;
+  }
+  
+  .languageItem:last-child {
+    margin-bottom: 0;
+  }
+  
+  .languageHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    align-items: center;
+  }
+  
+  .languageLevel {
+    color: #4682B4;
+    font-weight: 500;
+  }
+  
+  .progressBar {
+    width: 100%;
+    height: 0.5rem;
+    background-color: rgba(128, 128, 128, 0.3);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  
+  .progressFill {
+    height: 100%;
+    background-color: #4682B4;
+    border-radius: 999px;
+    transition: width 1s ease-in-out;
+  }
+  
+  /* Responsive design for tablets and larger screens */
+  @media (min-width: 768px) {
+    .aboutContent {
+      flex-direction: row;
+    }
+  
+    .aboutText {
+      width: 66.66%;
+    }
+  
+    .aboutSidebar {
+      width: 33.33%;
+    }
+  }
+  
+  /* Hover effects */
+  .languageCard:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+  }
+  
+  .aboutText:hover {
+    border-color: rgba(70, 130, 180, 0.3);
+    transition: border-color 0.3s ease;
+  }
