@@ -19,23 +19,20 @@ export default function About() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-2xl font-bold mb-4">Kashif Hasan – Senior Software Engineering Leader</h3>
+            <h3 className="text-2xl font-bold mb-4">Kashif Hasan – Software Engineer</h3>
             
             <p className="mb-4">
-              With 25 years of experience in software engineering, I specialize in designing and building robust, scalable systems across various domains. My expertise spans system architecture, distributed computing, cloud services, and AI-driven development and creating buisness value.
-            </p>
-            
-            <p className="mb-4">
-              Throughout my career, I&apos;ve maintained a strong focus on design patterns, SOLID principles, and cloud technologies (AWS/Google Cloud). I&apos;m passionate about leveraging test-driven development (TDD) and Agile methodologies to deliver high-quality software solutions.
+              I'm an techie, a yogi, a traveller, a polyglot, a rock climber, an AI artist and an all around good guy. With 25 years of experience in software engineering, I specialize in designing and building robust, scalable systems across various domains. My expertise spans system architecture, distributed computing, cloud services, and AI-driven development and creating buisness value.
             </p>
             
             <p className="mb-4">
-              Recently, I&apos;ve been at the forefront of AI adoption, working with cutting-edge tools like ChatGPT, Claude, Gemini, and Suno to enhance development processes and create innovative solutions.
+              Throughout my career, I&apos;ve maintained a strong focus on design patterns, SOLID principles, and cloud technologies (AWS/Google Cloud). I&apos;m passionate about leveraging test-driven development (TDD) and Agile methodologies to deliver high-quality software solutions. My technical experience includes building and managing high-performance teams, optimizing large-scale systems, and implementing innovative solutions to complex problems.
             </p>
             
-            <p>
-              My technical leadership experience includes building and managing high-performance teams, optimizing large-scale systems, and implementing innovative solutions to complex problems.
+            <p className="mb-4">
+              Recently, I&apos;ve been trying out the bleeding edge of tech, moving to an entirely AI Driven Development workflow. I have been working with cutting-edge tools like ChatGPT, Claude, Gemini to enhance software development processes. And Suno, Hailuo and Kling to create art and music.
             </p>
+
           </motion.div>
           
           <motion.div 
@@ -45,7 +42,7 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="bg-[#2F4F4F] p-6 rounded-lg shadow-lg">
-              <h3 className="text-xl font-bold mb-4">Language Skills</h3>
+              <h3 className="text-xl font-bold mb-4">Spoken Languages</h3>
               
               {[
                 { language: "English", level: "Native" },

@@ -3,7 +3,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr; /* Mobile: single column */
+  grid-template-columns: 1fr; /* Single column */
   grid-template-rows: auto 1fr; /* Navbar, then main */
   grid-template-areas:
     "navbar"
@@ -13,32 +13,24 @@
 
 .main-content {
   grid-area: main;
+  padding-top: 60px; /* Add padding-top to create space below navbar */
 }
 
-/* Narrow layout (640px - 1023px) */
-@media (min-width: 640px) and (max-width: 1023px) {
+/* All screen sizes now use the same grid layout since navbar is at the top */
+@media (min-width: 640px) {
   .grid-container {
-    grid-template-columns: 1fr 120px; /* Main + wider navbar */
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "main navbar";
+      "navbar"
+      "main";
   }
 }
-
-/* Wide layout (1024px and up) */
-@media (min-width: 1024px) {
-  .grid-container {
-    grid-template-columns: 1fr 80px; /* Main + narrow navbar */
-    grid-template-areas:
-      "main navbar";
-  }
-}
-
 
 :root {
   --dark-slate-gray: #2F4F4F;
   --light-gray: #D3D3D3;
-  --muted-teal: #4682B4;
-  --olive-green: #6B8E23;
+  --muted-teal: #3B82F6; /* Updated to a blue that matches the sunset image */
+  --olive-green: #4F46E5; /* Updated to indigo to complement the blue */
   --black: #121212;
   --dark-gray: #1E1E1E;
 }
@@ -126,7 +118,7 @@ button:hover, .button:hover {
   section {
     padding: 3rem 1rem;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }

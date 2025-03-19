@@ -1,11 +1,12 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import styles from './workhistory.module.css'; // Import CSS module
 
-export default function Experience() {
-  const [activeTab, setActiveTab] = useState(0);
+export default function WorkHistory() {
+  const [expandedIndex, setExpandedIndex] = useState(0); // State for accordion expansion
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
-  
+
   const experiences = [
     {
       company: "Agree Media",
@@ -74,78 +75,78 @@ export default function Experience() {
     }
   ];
 
+  const toggleAccordion = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
-    <section id="experience" className="py-20">
+    <section id="workhistory" className={`${styles.workHistorySection} py-20`}>
       <div className="container mx-auto px-4">
-        <h2 className="section-title">Experience</h2>
-        
+        <h2 className="section-title">Work History</h2>
+
         <div className="mt-12" ref={ref}>
-          <div className="flex flex-col md:flex-row">
-            {/* Company Tabs */}
-            <div className="w-full md:w-1/4 mb-6 md:mb-0">
-              <div className="md:sticky md:top-24">
-                {experiences.map((exp, index) => (
-                  <motion.div
-                    key={`${exp.company}-${exp.period}`}
-                    className={`cursor-pointer p-4 border-l-4 mb-2 transition-all duration-300 ${
-                      activeTab === index 
-                        ? "border-[#4682B4] bg-[#2F4F4F] text-white" 
-                        : "border-gray-700 bg-[#1E1E1E] hover:bg-[#2F4F4F] hover:border-[#6B8E23]"
-                    }`}
-                    onClick={() => setActiveTab(index)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <h3 className="font-bold">{exp.company}</h3>
-                    <p className="text-sm">{exp.period}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Experience Details */}
-            <div className="w-full md:w-3/4 md:pl-8">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={`${exp.company}-${exp.period}-details`}
-                  className={`${activeTab === index ? "block" : "hidden"}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView && activeTab === index ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5 }}
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={`${exp.company}-${exp.period}`}
+              className={`${styles.accordionItem}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div
+                className={styles.accordionHeader}
+                onClick={() => toggleAccordion(index)}
+              >
+                <div className={styles.headerText}>
+                  <h3 className={styles.companyName}>{exp.company}</h3>
+                  <p className={styles.period}>{exp.period}</p>
+                </div>
+                <motion.span
+                  className={`${styles.accordionIcon} ${expandedIndex === index ? styles.expanded : ''}`}
                 >
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold">{exp.title}</h3>
-                    <div className="flex flex-col sm:flex-row sm:justify-between mt-2">
-                      <a 
-                        href={exp.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-[#4682B4] transition-all duration-300 hover:underline"
-                      >
-                        {exp.company}
-                      </a>
-                      <span className="text-gray-400">{exp.location}</span>
-                    </div>
-                    <p className="text-gray-400 mt-1">{exp.period}</p>
+                  {/* You can use an icon here, e.g., a "+" or "-" icon, or a simple arrow */}
+                  {expandedIndex === index ? '-' : '+'}
+                </motion.span>
+              </div>
+
+              {expandedIndex === index && (
+                <motion.div
+                  className={styles.accordionContent}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                >
+                  <h3 className={styles.jobTitle}>{exp.title}</h3>
+                  <div className="mt-2">
+                    <a
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.companyLink}
+                    >
+                      {exp.company}
+                    </a>
+                    <p className={styles.locationPeriod}>{exp.location} | {exp.period}</p>
                   </div>
-                  
-                  <ul className="list-disc pl-5 space-y-2">
+
+                  <ul className={styles.responsibilitiesList}>
                     {exp.responsibilities.map((resp, i) => (
-                      <motion.li 
+                      <motion.li
                         key={i}
+                        className={styles.responsibilityItem}
                         initial={{ opacity: 0, x: 20 }}
-                        animate={isInView && activeTab === index ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                        transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 + i * 0.05 }}
                       >
                         {resp}
                       </motion.li>
                     ))}
                   </ul>
                 </motion.div>
-              ))}
-            </div>
-          </div>
+              )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

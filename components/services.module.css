@@ -1,0 +1,52 @@
+/* services.module.css */
+
+.servicesSection {
+    background-color: var(--dark-gray); /* Dark background */
+    color: var(--light-gray); /* Light text */
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.heroSubtitle {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--light-gray);
+}
+
+.servicesGrid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.serviceCard {
+    background-color: rgba(55, 65, 81, 0.3); /* Card background - subtle dark */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.serviceTitle {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.serviceDescription {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.ctaButton {
+    text-align: center;
+}
+
+
+/* Medium screens and above */
+@media (min-width: 768px) {
+    .servicesGrid {
+        grid-template-columns: 1fr 1fr 1fr; /* Three columns on larger screens */
+    }
+}

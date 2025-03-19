@@ -1,29 +1,42 @@
 .navbar {
     grid-area: navbar;
-    display: grid;
-    grid-template-rows: auto 1fr;
-    transition: background-color 0.3s ease-in-out;
-    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-in-out;
+    background-color: transparent; /* Start fully transparent */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
   }
   
   .scrolled {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 1); /* Change to solid black when scrolled */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
   .logoContainer {
-    padding: 0.5rem 0;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Ensure logo stays above other elements */
+    margin-left: auto; /* Move logo to the right */
   }
   
   .logo {
     width: 40px;
     height: 40px;
     cursor: pointer;
+    position: relative; /* Ensure positioning context for the image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .rockAnimation {
-    animation: rock 0.75s ease-in-out; /* Adjusted to 0.75s */
+    animation: rock 0.75s ease-in-out;
   }
   
   @keyframes rock {
@@ -34,14 +47,16 @@
   }
   
   .menu {
-    display: grid;
-    gap: 0.1rem;
-    transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out; /* Adjusted to 0.75s */
-    padding: 0.1rem 0;
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    transform: translateY(-100%);
+    position: absolute;
   }
   
   .expanded {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
   
@@ -50,132 +65,100 @@
     font-size: 0.75rem;
     font-weight: 500;
     text-decoration: none;
-    background-color: rgba(55, 65, 81, 0.9);
-    padding: 0.1rem 0.5rem;
-    text-align: right;
+    padding: 0.5rem 0.75rem;
     transition: background-color 0.2s ease-in-out;
     border-radius: 0.25rem;
   }
   
   .navItem:hover {
     background-color: rgba(75, 85, 99, 0.95);
+    text-decoration: none; /* Override default underline */
   }
   
   /* Mobile (≤ 639px) */
   @media (max-width: 639px) {
     .navbar {
-      width: 100%;
-      height: auto;
-      position: sticky;
-      top: 0;
-      grid-template-columns: auto 1fr;
-      grid-template-rows: auto;
-      grid-template-areas: "logo menu";
-      padding: 0 1rem;
-      align-items: center;
-      background-color: transparent;
-      z-index: 1000;
+      padding: 0.75rem 1rem;
+      background-color: rgba(0, 0, 0, 0.5); /* Slightly visible background on mobile */
+    }
+    
+    .scrolled {
+      background-color: rgba(0, 0, 0, 1);
     }
   
-    .logoContainer {
-      grid-area: logo;
+    .logo {
+      width: 36px;
+      height: 36px;
     }
   
     .menu {
-      grid-area: menu;
-      position: absolute;
-      top: 100%;
-      right: 0; /* Align to the right */
-      width: 50%; /* Adjust width to keep it compact on the right */
-      background-color: rgba(31, 41, 55, 0.9);
+      position: fixed;
+      top: 56px; /* Height of navbar */
+      right: 0;
+      width: 100%;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.9);
       padding: 0.5rem;
-      transform: translateX(100%); /* Slide in from the right */
-      opacity: 0;
-      transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out; /* Adjusted to 0.75s */
+      transform: translateY(-150%);
     }
   
     .expanded {
-      transform: translateX(0);
+      transform: translateY(0);
       opacity: 1;
     }
   
     .navItem {
-      padding: 0.5rem 0.75rem;
-      text-align: right; /* Keep text aligned right for consistency */
-      border-radius: 0.25rem;
+      text-align: center;
+      padding: 0.75rem 0.5rem;
+      margin: 0.25rem 0;
     }
   }
   
   /* Narrow (640px - 1023px) */
   @media (min-width: 640px) and (max-width: 1023px) {
     .navbar {
-      width: 120px;
-      height: 100vh;
-      position: fixed;
-      right: 0;
-      top: 0;
-      grid-template-rows: auto 1fr;
-      background-color: transparent;
-    }
-  
-    .logoContainer {
-      padding: 1.5rem 0;
+      padding: 0.75rem 1.5rem;
     }
   
     .menu {
-      padding-right: 0.5rem;
-      padding-left: 0.5rem;
-      transform: translateX(120px);
-      opacity: 0;
-      background-color: rgba(31, 41, 55, 0.9);
-      transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out; /* Adjusted to 0.75s */
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 0.5rem;
+      transform: translateY(-150%);
+      border-radius: 0 0 0 8px;
     }
   
     .expanded {
-      transform: translateX(0);
+      transform: translateY(0);
       opacity: 1;
-    }
-  
-    .navItem {
-      padding: 0.1rem 0.75rem;
-      text-align: right;
-      border-radius: 0.25rem;
     }
   }
   
   /* Wide (≥ 1024px) */
   @media (min-width: 1024px) {
     .navbar {
-      width: 80px;
-      height: 100vh;
-      position: fixed;
-      right: 0;
-      top: 0;
-      grid-template-rows: auto 1fr;
-      background-color: transparent;
-    }
-  
-    .logoContainer {
-      padding: 1.5rem 0;
+      padding: 0.75rem 2rem;
     }
   
     .menu {
-      padding-right: 0.25rem;
-      padding-left: 0.25rem;
-      transform: translateX(80px);
-      opacity: 0;
-      background-color: rgba(31, 41, 55, 0.9);
-      transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out; /* Adjusted to 0.75s */
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 0.5rem;
+      border-radius: 0 0 0 8px;
     }
-  
+    
     .expanded {
-      transform: translateX(0);
+      transform: translateY(0);
       opacity: 1;
     }
-  
-    .navItem {
-      padding: 0.1rem 0.5rem;
-      text-align: right;
-      border-radius: 0.25rem;
+    
+    /* When navbar is not scrolled, add subtle hover effect to nav items for better visibility */
+    .navbar:not(.scrolled) .navItem:hover {
+      background-color: rgba(0, 0, 0, 0.5);
     }
   }
