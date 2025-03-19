@@ -22,7 +22,7 @@ export default function About() {
             <h3 className="text-2xl font-bold mb-4">Kashif Hasan – Software Engineer</h3>
             
             <p className="mb-4">
-              I'm an techie, a yogi, a traveller, a polyglot, a rock climber, an AI artist and an all around good guy. With 25 years of experience in software engineering, I specialize in designing and building robust, scalable systems across various domains. My expertise spans system architecture, distributed computing, cloud services, and AI-driven development and creating buisness value.
+              I&apos;m an techie, a yogi, a traveller, a polyglot, a rock climber, an AI artist and an all around good guy. With 25 years of experience in software engineering, I specialize in designing and building robust, scalable systems across various domains. My expertise spans system architecture, distributed computing, cloud services, and AI-driven development and creating buisness value.
             </p>
             
             <p className="mb-4">

@@ -44,7 +44,7 @@ export default function AIMusic() {
       <div className="container">
         <h2 className="section-title">AI Music Creations</h2>
         <p className={styles.description}>
-          Passionate about exploring the creative potential of AI in music. Using <Link href="https://suno.com/@kashykash" target="_blank" rel="noopener noreferrer" className={styles.sunoLink}>Suno</Link> and collaborating with <Link href="https://www.youtube.com/@Beholdify" target="_blank" rel="noopener noreferrer" className={styles.beholdifyLink}>Beholdify</Link>, I've been experimenting with generating unique AI-driven musical pieces. Here are a few examples:
+          Passionate about exploring the creative potential of AI in music. Using <Link href="https://suno.com/@kashykash" target="_blank" rel="noopener noreferrer" className={styles.sunoLink}>Suno</Link> and collaborating with <Link href="https://www.youtube.com/@Beholdify" target="_blank" rel="noopener noreferrer" className={styles.beholdifyLink}>Beholdify</Link>, I&apos;ve been experimenting with generating unique AI-driven musical pieces. Here are a few examples:
         </p>
 
         <div className={styles.carouselContainer}>
