@@ -23,7 +23,7 @@ export default function About() {
             <h3 className={styles.aboutHeading}>Kashif Hasan – Software Engineer</h3>
             
             <p className={styles.aboutParagraph}>
-              I&apos;m a techie, yogi, and rock climber with 25 years of experience as a software engineer, designing robust, scalable systems. I specialize in system architecture, cloud services (AWS/Google Cloud), and AI-driven development, emphasizing SOLID principles, TDD, and Agile. I've led high-performance teams and optimized complex systems while enjoying travel and creating AI art. Recently, I've embraced an AI-driven workflow using ChatGPT, Claude, and Gemini for coding, plus Suno and Kling for music and art.
+              I&apos;m a techie, yogi, and rock climber with 25 years of experience as a software engineer, designing robust, scalable systems. I specialize in system architecture, cloud services (AWS/Google Cloud), and AI-driven development, emphasizing SOLID principles, TDD, and Agile. I&apos;ve led high-performance teams and optimized complex systems while enjoying travel and creating AI art. Recently, I&apos;ve embraced an AI Driven workflow using ChatGPT, Claude, Grok, and Gemini for coding, plus Suno and Kling for music and art.
             </p>        
           </motion.div>
           
