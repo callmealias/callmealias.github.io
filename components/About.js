@@ -20,10 +20,13 @@ export default function About() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className={styles.aboutHeading}>Kashif Hasan – Software Engineer</h3>
+            <h3 className={styles.aboutHeading}>Kashif Hasan – A Man of Many Skills</h3>
             
             <p className={styles.aboutParagraph}>
-              I&apos;m a techie, yogi, and rock climber with 25 years of experience as a software engineer, designing robust, scalable systems. I specialize in system architecture, cloud services (AWS/Google Cloud), and AI-driven development, emphasizing SOLID principles, TDD, and Agile. I&apos;ve led high-performance teams and optimized complex systems while enjoying travel and creating AI art. Recently, I&apos;ve embraced an AI Driven workflow using ChatGPT, Claude, Grok, and Gemini for coding, plus Suno and Kling for music and art.
+              I&apos;m not just a techie I&apos;m also a yogi, a rock climber, a traveller, and artist. My natural curiousity has taken me far and wide. Thoughout it all I've learned that regular consitent effort and knowing how to recognize what&apos;s actually important and focus on the task at hand have led to me consistently exceeding expectations.
+            </p>
+            <p>
+              With 25 years of experience as a Software Engineer I have been designing reliant robust, scalable systems my entire career. I have a depth of knowledge in system architecture, cloud services, project management and AI Driven Development. I understand SOLID principles and am comfortable working in TDD, Agile and Kanban or other sane development paradigms. I&apos;ve led high-performance teams and optimized complex systems. Recently, I&apos;ve embraced an AI Driven workflow using ChatGPT, Claude, Grok, and Gemini for coding, plus Suno and Kling for music and art. I love solving problems and creating value.
             </p>        
           </motion.div>
           

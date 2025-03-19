@@ -3,14 +3,14 @@ import { motion, useInView } from 'framer-motion';
 import styles from './workhistory.module.css'; // Import CSS module
 
 export default function WorkHistory() {
-  const [expandedIndex, setExpandedIndex] = useState(0); // State for accordion expansion
+  const [expandedIndex, setExpandedIndex] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
 
   const experiences = [
     {
       company: "Agree Media",
-      url: "#", // Placeholder URL
+      url: "#",
       period: "08/2020 - 08/2024",
       title: "Senior Software Developer",
       location: "San Diego, CA",
@@ -36,7 +36,7 @@ export default function WorkHistory() {
     },
     {
       company: "Novatel Wireless",
-      url: "#", // Placeholder URL
+      url: "#",
       period: "04/2007 - 09/2008",
       title: "Software Design Engineer",
       location: "San Diego, CA",
@@ -98,14 +98,24 @@ export default function WorkHistory() {
                 onClick={() => toggleAccordion(index)}
               >
                 <div className={styles.headerText}>
-                  <h3 className={styles.companyName}>{exp.company}</h3>
-                  <p className={styles.period}>{exp.period}</p>
+                  <h3 className={styles.companyName}>
+                    <a
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.companyLink}
+                    >
+                      {exp.company}
+                    </a>
+                  </h3>
+                  <p className={styles.period}>
+                    {exp.title} ({exp.period})
+                  </p>
                 </div>
                 <motion.span
                   className={`${styles.accordionIcon} ${expandedIndex === index ? styles.expanded : ''}`}
                 >
-                  {/* You can use an icon here, e.g., a "+" or "-" icon, or a simple arrow */}
-                  {expandedIndex === index ? '-' : '+'}
+                  {expandedIndex === index ? '−' : '+'}
                 </motion.span>
               </div>
 
@@ -117,17 +127,8 @@ export default function WorkHistory() {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
-                  <h3 className={styles.jobTitle}>{exp.title}</h3>
                   <div className="mt-2">
-                    <a
-                      href={exp.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.companyLink}
-                    >
-                      {exp.company}
-                    </a>
-                    <p className={styles.locationPeriod}>{exp.location} | {exp.period}</p>
+                    <p className={styles.locationPeriod}>{exp.location}</p>
                   </div>
 
                   <ul className={styles.responsibilitiesList}>

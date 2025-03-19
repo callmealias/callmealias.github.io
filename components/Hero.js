@@ -37,6 +37,9 @@ export default function Hero() {
           <Link href="/#services" className="button">
             Software Consulting
           </Link>
+          <Link href="/#workhistory" className="button">
+            Work History
+          </Link>
           <Link href="/#ai-music" className="button">
             AI Art & Music
           </Link>

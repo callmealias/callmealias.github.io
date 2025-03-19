@@ -1,93 +1,94 @@
 .workHistorySection {
     padding-top: 6rem;
     padding-bottom: 6rem;
-  }
-  
-  .accordionItem {
+}
+
+.accordionItem {
     margin-bottom: 1.5rem;
-    border-radius: 0.5rem;
-    overflow: hidden; /* To ensure rounded corners on expanded content */
-    background-color: #1E1E1E; /* Darker background for accordion items */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-  }
-  
-  .accordionHeader {
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #2f4f4f, #1e3a3a);
+    border: 2px solid #4682b4;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.accordionItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+    border-color: #6b8e23;
+}
+
+.accordionHeader {
     padding: 1.5rem;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2F4F4F; /* Slightly lighter header background */
+    background-color: rgba(70, 130, 180, 0.2);
     transition: background-color 0.3s ease;
-  }
-  
-  .accordionHeader:hover {
-    background-color: #4F46E5; /* Hover background color */
-  }
-  
-  .headerText {
+}
+
+.accordionHeader:hover {
+    background-color: rgba(70, 130, 180, 0.3);
+}
+
+.headerText {
     flex-grow: 1;
-  }
-  
-  .companyName {
+}
+
+.companyName {
     font-size: 1.25rem;
     font-weight: bold;
     color: white;
     margin-bottom: 0.25rem;
-  }
-  
-  .period {
+}
+
+.period {
     font-size: 0.9rem;
     color: #D3D3D3;
-  }
-  
-  .accordionIcon {
+}
+
+.accordionIcon {
     margin-left: 1rem;
-    color: white;
+    color: #ffffff; /* White color for the +/- button */
+    font-size: 1rem; /* Smaller size */
     transition: transform 0.3s ease;
-  }
-  
-  .accordionIcon.expanded {
+}
+
+.accordionIcon.expanded {
     transform: rotate(180deg);
-  }
-  
-  .accordionContent {
+    color: #ffffff; /* Keep white when expanded */
+}
+
+.accordionContent {
     padding: 1.5rem;
-    background-color: #1E1E1E; /* Content background same as item background */
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator between header and content */
-  }
-  
-  .jobTitle {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 0.5rem;
-  }
-  
-  .companyLink {
-    color: #4682B4;
-    transition: color 0.3s ease;
-    display: block; /* Make it block for layout */
-    margin-bottom: 0.25rem;
-  }
-  
-  .companyLink:hover {
-    color: #60a5fa;
-    text-decoration: underline;
-  }
-  
-  .locationPeriod {
+    background-color: #1E1E1E;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.locationPeriod {
     font-size: 0.9rem;
     color: #D3D3D3;
     margin-bottom: 1rem;
-  }
-  
-  .responsibilitiesList {
+}
+
+.responsibilitiesList {
     list-style: disc;
     padding-left: 1.5rem;
     line-height: 1.6;
-  }
-  
-  .responsibilityItem {
+}
+
+.responsibilityItem {
     margin-bottom: 0.5rem;
-  }
+}
+
+.companyLink {
+    color: #4682b4;
+    transition: color 0.3s ease;
+}
+
+.companyLink:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+}
