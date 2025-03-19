@@ -22,17 +22,8 @@ export default function About() {
             <h3 className="text-2xl font-bold mb-4">Kashif Hasan – Software Engineer</h3>
             
             <p className="mb-4">
-              I&apos;m an techie, a yogi, a traveller, a polyglot, a rock climber, an AI artist and an all around good guy. With 25 years of experience in software engineering, I specialize in designing and building robust, scalable systems across various domains. My expertise spans system architecture, distributed computing, cloud services, and AI-driven development and creating buisness value.
-            </p>
-            
-            <p className="mb-4">
-              Throughout my career, I&apos;ve maintained a strong focus on design patterns, SOLID principles, and cloud technologies (AWS/Google Cloud). I&apos;m passionate about leveraging test-driven development (TDD) and Agile methodologies to deliver high-quality software solutions. My technical experience includes building and managing high-performance teams, optimizing large-scale systems, and implementing innovative solutions to complex problems.
-            </p>
-            
-            <p className="mb-4">
-              Recently, I&apos;ve been trying out the bleeding edge of tech, moving to an entirely AI Driven Development workflow. I have been working with cutting-edge tools like ChatGPT, Claude, Gemini to enhance software development processes. And Suno, Hailuo and Kling to create art and music.
-            </p>
-
+            I'm a techie, yogi, and rock climber with 25 years of experience as a software engineer, designing robust, scalable systems. I specialize in system architecture, cloud services (AWS/Google Cloud), and AI-driven development, emphasizing SOLID principles, TDD, and Agile. I’ve led high-performance teams and optimized complex systems while enjoying travel and creating AI art. Recently, I’ve embraced an AI-driven workflow using ChatGPT, Claude, and Gemini for coding, plus Suno and Kling for music and art.
+            </p>        
           </motion.div>
           
           <motion.div 

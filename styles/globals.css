@@ -96,6 +96,26 @@ button:hover, .button:hover {
   transform: scale(1.05);
 }
 
+/* New site-wide toggle button styling */
+.toggle-button {
+  background: none;
+  border: none;
+  color: var(--light-gray);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-button:hover {
+  color: var(--muted-teal);
+}
+
 .section-title {
   font-size: 2.5rem;
   margin-bottom: 2rem;

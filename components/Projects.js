@@ -1,13 +1,26 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import styles from './projects.module.css';
 
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
-  
+
+  // State to track which cards are expanded
+  const [expandedCards, setExpandedCards] = useState({});
+
+  // Toggle function to expand/collapse a card
+  const toggleCard = (title) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
+  };
+
   const projects = [
     {
       title: "TechAround",
+      subtitle: "Empowering small businesses with custom web solutions",
       period: "2014-2019",
       description: "Full-stack web development for small businesses",
       technologies: ["PHP", "JavaScript", "MySQL", "Laravel", "WordPress", "WHMCS", "Node.js"],
@@ -16,6 +29,7 @@ export default function Projects() {
     },
     {
       title: "Foresight Sports",
+      subtitle: "Enhancing sports tech with ARM TI RTOS integration",
       period: "2015-2016",
       description: "MTP implementation on ARM TI RTOS device",
       technologies: ["Embedded C", "USB", "Bluetooth", "Win32"],
@@ -24,6 +38,7 @@ export default function Projects() {
     },
     {
       title: "BitKibble",
+      subtitle: "Optimizing ad networks with system monitoring",
       period: "2015",
       description: "Windows service and drivers for ad network monetization",
       technologies: ["C/C++", "Win32 API", "WDM", "WDF"],
@@ -32,6 +47,7 @@ export default function Projects() {
     },
     {
       title: "Samsung Semiconductor",
+      subtitle: "Boosting image processing performance 4x",
       period: "2014",
       description: "4x performance boost in image processing firmware",
       technologies: ["Embedded Linux", "Android SDK/NDK", "C", "ARM Assembly"],
@@ -40,6 +56,7 @@ export default function Projects() {
     },
     {
       title: "Chelsio Communications",
+      subtitle: "Pioneering server virtualization with NDIS drivers",
       period: "2009-2010",
       description: "NDIS Miniport Driver for 1Gb NIC",
       technologies: ["WDF", "NDIS"],
@@ -48,6 +65,7 @@ export default function Projects() {
     },
     {
       title: "InterKnowlogy",
+      subtitle: "Improving GPS software stability and performance",
       period: "2011",
       description: "Refactored GPS software and web apps",
       technologies: ["C#", "ASP.NET", "C++", "Win32 API"],
@@ -57,57 +75,81 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-20">
-      <div className="container mx-auto px-4">
-        <h2 className="section-title">Projects</h2>
-        
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" ref={ref}>
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              className="bg-[#2F4F4F] rounded-lg shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl border border-transparent hover:border-[#4682B4]"
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <span className="text-sm text-gray-400">{project.period}</span>
-                </div>
-                
-                <p className="mb-4">{project.description}</p>
-                
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-[#4682B4] mb-2">Technologies:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map(tech => (
-                      <span 
-                        key={tech} 
-                        className="px-2 py-1 bg-[#1E1E1E] rounded-full text-xs font-medium"
+    <section id="projects" className={styles.section}>
+      <div className={styles.container}>
+        <h2 className={styles.sectionTitle}>Projects</h2>
+
+        <div className={styles.grid} ref={ref}>
+          {projects.map((project, index) => {
+            const isExpanded = expandedCards[project.title] || false;
+
+            return (
+              <motion.div
+                key={project.title}
+                className={styles.card}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className={styles.cardContent}>
+                  <div
+                    className={styles.cardHeader}
+                    onClick={() => toggleCard(project.title)}
+                  >
+                    <div className={styles.headerLeft}>
+                      <h3 className={styles.cardTitle}>
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.titleLink}
+                        >
+                          {project.title}
+                        </a>
+                      </h3>
+                      <p className={styles.subtitle}>{project.subtitle}</p>
+                    </div>
+                    <div className={styles.headerRight}>
+                      <span className={styles.period}>{project.period}</span>
+                      <motion.span
+                        className={`${styles.accordionIcon} ${isExpanded ? styles.expanded : ''}`}
                       >
-                        {tech}
-                      </span>
-                    ))}
+                        {isExpanded ? '−' : '+'}
+                      </motion.span>
+                    </div>
                   </div>
+
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={styles.collapsibleContent}
+                    >
+                      <p className={styles.description}>{project.description}</p>
+
+                      <div className={styles.technologies}>
+                        <h4 className={styles.techTitle}>Technologies:</h4>
+                        <div className={styles.techTags}>
+                          {project.technologies.map(tech => (
+                            <span key={tech} className={styles.techTag}>
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className={styles.outcome}>
+                        <h4 className={styles.outcomeTitle}>Outcome:</h4>
+                        <p className={styles.outcomeText}>{project.outcome}</p>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
-                
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-[#4682B4] mb-2">Outcome:</h4>
-                  <p className="text-sm">{project.outcome}</p>
-                </div>
-                
-                <a 
-                  href={project.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-block mt-2 text-[#4682B4] hover:text-[#6B8E23] transition-colors duration-300 hover:underline"
-                >
-                  Visit Website
-                </a>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

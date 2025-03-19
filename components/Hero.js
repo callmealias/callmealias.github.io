@@ -34,11 +34,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Link href="/#resume" className="button">
-            View Resume
+          <Link href="/#services" className="button">
+            Software Consulting
           </Link>
-          <Link href="/#projects" className="button">
-            Explore Projects
+          <Link href="/#ai-music" className="button">
+            AI Art & Music
           </Link>
         </motion.div>
 
