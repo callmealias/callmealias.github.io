@@ -7,6 +7,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isRocking, setIsRocking] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const navRef = useRef(null);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function Navbar() {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target) && isExpanded) {
         setIsExpanded(false);
+        setActiveDropdown(null);
       }
     };
     
@@ -39,6 +41,7 @@ export default function Navbar() {
   const handleLogoClick = () => {
     setIsRocking(true);
     setIsExpanded(!isExpanded); // Toggle menu on all screen sizes
+    setActiveDropdown(null);
     setTimeout(() => setIsRocking(false), 1000);
   };
 
@@ -53,13 +56,32 @@ export default function Navbar() {
 
   const handleNavLeave = () => {
     setIsExpanded(false);
+    setActiveDropdown(null);
   };
 
   const handleMenuClick = () => {
     setIsExpanded(false);
+    setActiveDropdown(null);
   };
 
-  const navItems = ['home', 'about', 'experience', 'skills', 'projects', 'resume', 'contact'];
+  const handleDropdownToggle = (item) => {
+    if (activeDropdown === item) {
+      setActiveDropdown(null);
+    } else {
+      setActiveDropdown(item);
+    }
+  };
+
+  // Main nav items with experience as a parent for the subitems
+  const navItems = ['home', 'about', 'experience', 'ai-music', 'services', 'contact'];
+  
+  // Subitems under experience
+  const experienceSubitems = [
+    { name: 'skills', label: 'Skills' },
+    { name: 'work-history', label: 'Work History' },
+    { name: 'projects', label: 'Projects' },
+    { name: 'resume', label: 'Resume' }
+  ];
 
   return (
     <nav
@@ -81,21 +103,48 @@ export default function Navbar() {
             alt="KSH Dev"
             width={40}
             height={40}
-            className="object-contain"
+            className={`object-contain ${scrolled ? styles.scrolledLogo : ''}`}
             priority
           />
         </div>
         
         <div className={`${styles.menu} ${isExpanded ? styles.expanded : ''}`}>
           {navItems.map((item) => (
-            <Link
-              key={item}
-              href={`/#${item}`}
-              className={styles.navItem}
-              onClick={handleMenuClick}
-            >
-              {item.charAt(0).toUpperCase() + item.slice(1)}
-            </Link>
+            <div key={item} className={styles.navItemContainer}>
+              {item === 'experience' ? (
+                <>
+                  <div 
+                    className={`${styles.navItem} ${activeDropdown === 'experience' ? styles.active : ''}`}
+                    onClick={() => handleDropdownToggle('experience')}
+                  >
+                    Experience
+                    <span className={styles.dropdownArrow}>▼</span>
+                  </div>
+                  {activeDropdown === 'experience' && (
+                    <div className={styles.submenu}>
+                      {experienceSubitems.map((subitem) => (
+                        <Link
+                          key={subitem.name}
+                          href={`/#${subitem.name}`}
+                          className={styles.submenuItem}
+                          onClick={handleMenuClick}
+                        >
+                          {subitem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link
+                  href={`/#${item}`}
+                  className={styles.navItem}
+                  onClick={handleMenuClick}
+                >
+                  {item === 'ai-music' ? 'AI Music' : item.charAt(0).toUpperCase() + item.slice(1)}
+                </Link>
+              )}
+            </div>
           ))}
         </div>
       </div>
