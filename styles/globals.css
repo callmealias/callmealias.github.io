@@ -143,3 +143,12 @@ button:hover, .button:hover {
     font-size: 2rem;
   }
 }
+
+.social-link {
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+.social-link:hover {
+  color: #60a5fa;
+}
