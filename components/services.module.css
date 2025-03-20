@@ -5,12 +5,23 @@
     color: var(--text-muted);
     padding-top: var(--section-padding-y);
     padding-bottom: var(--section-padding-y);
+    position: relative;
+  }
+  
+  .servicesSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--muted-teal), var(--olive-green));
   }
   
   .heroSubtitle {
     font-size: 1.5rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     color: var(--text-muted);
   }
   
@@ -18,7 +29,7 @@
     display: grid;
     grid-template-columns: 1fr; /* Single column on mobile */
     gap: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   
   .serviceCard {
@@ -26,26 +37,94 @@
     padding: var(--card-padding);
     border-radius: var(--border-radius);
     border: 1px solid var(--card-border);
+    transition: var(--transition-standard);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .serviceCard:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-md);
+    border-color: var(--muted-teal);
+    background-color: var(--card-bg-hover);
+  }
+  
+  .serviceCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--muted-teal), var(--olive-green));
+    transition: var(--transition-standard);
+  }
+  
+  .serviceCard:hover::before {
+    width: 100%;
+  }
+  
+  .iconWrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background-color: rgba(59, 130, 246, 0.1);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    color: var(--muted-teal);
+    transition: var(--transition-standard);
+  }
+  
+  .serviceCard:hover .iconWrapper {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: var(--olive-green);
+    transform: scale(1.1);
   }
   
   .serviceTitle {
     font-size: 1.75rem;
     margin-bottom: 1rem;
     color: var(--text-light);
+    transition: var(--transition-standard);
+  }
+  
+  .serviceCard:hover .serviceTitle {
+    color: var(--muted-teal);
   }
   
   .serviceDescription {
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.6;
   }
   
   .ctaButton {
     text-align: center;
   }
   
+  .ctaButton .button {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.8rem;
+    box-shadow: var(--box-shadow-sm);
+  }
+  
+  .ctaButton .button:hover {
+    box-shadow: var(--box-shadow-md);
+  }
+  
   /* Medium screens and above */
   @media (min-width: 768px) {
     .servicesGrid {
       grid-template-columns: 1fr 1fr 1fr; /* Three columns on larger screens */
+    }
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .serviceCard {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }

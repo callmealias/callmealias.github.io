@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import styles from './workhistory.module.css'; // Import CSS module
 
 export default function WorkHistory() {
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
 

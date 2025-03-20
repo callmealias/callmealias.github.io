@@ -43,7 +43,8 @@ export default function Skills() {
         { name: "Node.js", level: 80 },
         { name: "Win32 API", level: 85 },
         { name: "Android SDK/NDK", level: 75 },
-        { name: "ARM Assembly", level: 70 }
+        { name: "ARM Assembly", level: 70 },
+        { name: "SQL / MySql", level: 85 },
       ]
     },
     {
@@ -54,25 +55,25 @@ export default function Skills() {
         </svg>
       ),
       skills: [
-        { name: "AWS (ECS)", level: 85 },
-        { name: "Google Cloud", level: 80 },
-        { name: "Facebook APIs", level: 75 },
+        { name: "AWS (ECS/EC2)", level: 85 },
+        { name: "Google Ads Api", level: 80 },
+        { name: "Facebook Api", level: 85 },
         { name: "Windows Driver Model (WDM)", level: 90 },
-        { name: "Windows Device Framework (WDF)", level: 85 }
+        { name: "Windows Device Framework (WDF)", level: 90 }
       ]
     },
     {
-      title: "Methodologies",
+      title: "Development Methodologies",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
         </svg>
       ),
       skills: [
-        { name: "TDD", level: 90 },
+        { name: "AIDD (AI Driven Design)", level: 90 },
+        { name: "TDD (Test Driven Design)", level: 90 },
         { name: "Agile", level: 90 },
-        { name: "SOLID principles", level: 95 },
-        { name: "Design patterns", level: 90 },
+        { name: "Kanban", level: 90 },
         { name: "Project management", level: 85 }
       ]
     },
@@ -91,17 +92,18 @@ export default function Skills() {
       ]
     },
     {
-      title: "Other",
+      title: "Software Architecture",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
         </svg>
       ),
       skills: [
+        { name: "SOLID Principles", level: 85 },
+        { name: "Event Driven Architecture", level: 85 },
         { name: "Embedded systems", level: 85 },
         { name: "Kernel-mode drivers", level: 90 },
-        { name: "SQL optimization", level: 85 },
-        { name: "Distributed computing", level: 90 }
+        { name: "Distributed services", level: 90 }
       ]
     }
   ];
