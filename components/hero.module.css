@@ -1,4 +1,4 @@
-/* hero.module.css - Increased Font Sizes */
+/* hero.module.css */
 
 .heroSection {
     grid-area: hero;
@@ -8,9 +8,9 @@
     place-items: center;
     background-size: cover;
     background-position: center;
-}
-
-.container {
+  }
+  
+  .container {
     position: relative;
     z-index: 10;
     max-width: 1200px;
@@ -19,109 +19,108 @@
     display: grid;
     gap: .5rem; /* Adjust as needed */
     text-align: center;
-}
-
-.heroTitle {
-    color: white;
+  }
+  
+  .heroTitle {
+    color: var(--text-light);
     font-weight: bold;
     grid-area: title-area;
-}
-
-.heroSubtitle {
-    color: white;
+  }
+  
+  .heroSubtitle {
+    color: var(--text-light);
     grid-area: subtitle-area;
-}
-
-.heroDescription {
+  }
+  
+  .heroDescription {
     color: rgba(249, 250, 251, 0.8);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     grid-area: description-area;
-}
-
-.blankArea {
+  }
+  
+  .blankArea {
     grid-area: blank-area;
-}
-
-.heroButtons {
+  }
+  
+  .heroButtons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
     grid-area: buttons-area;
-}
-
-.heroSocials {
+  }
+  
+  .heroSocials {
     display: flex;
     justify-content: center;
     gap: 2rem;
     grid-area: socials-area;
-}
-
-.heroSocials a {
-    color: white;
-    transition: color 0.3s ease-in-out;
-}
-
-.heroSocials a:hover {
+  }
+  
+  .heroSocials a {
+    color: var(--text-light);
+    transition: var(--transition-standard);
+  }
+  
+  .heroSocials a:hover {
     color: #60a5fa;
-}
-
-
-/* Mobile (≤ 639px) */
-@media (max-width: 639px) {
+  }
+  
+  /* Mobile (≤ 639px) */
+  @media (max-width: 639px) {
     .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
-        grid-template-areas:
-            "title-area"
-            "subtitle-area"
-            "description-area"
-            "blank-area"
-            "buttons-area"
-            "socials-area";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
+      grid-template-areas:
+        "title-area"
+        "subtitle-area"
+        "description-area"
+        "blank-area"
+        "buttons-area"
+        "socials-area";
     }
-    .heroTitle { font-size: 3rem; } /* Increased mobile title size */
-    .heroSubtitle { font-size: 1.5rem; } /* Increased mobile subtitle size */
-    .heroDescription { font-size: 1.2rem; } /* Increased mobile description size */
+    .heroTitle { font-size: 3rem; }
+    .heroSubtitle { font-size: 1.5rem; }
+    .heroDescription { font-size: 1.2rem; }
     .blankArea { min-height: 6rem; }
-}
-
-/* Narrow (640px - 1023px) */
-@media (min-width: 640px) and (max-width: 1023px) {
+  }
+  
+  /* Narrow (640px - 1023px) */
+  @media (min-width: 640px) and (max-width: 1023px) {
     .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
-        grid-template-areas:
-            "title-area"
-            "subtitle-area"
-            "description-area"
-            "blank-area"
-            "buttons-area"
-            "socials-area";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
+      grid-template-areas:
+        "title-area"
+        "subtitle-area"
+        "description-area"
+        "blank-area"
+        "buttons-area"
+        "socials-area";
     }
-    .heroTitle { font-size: 3.5rem; } /* Increased narrow title size */
-    .heroSubtitle { font-size: 2rem; } /* Increased narrow subtitle size */
-    .heroDescription { font-size: 1rem; } /* Increased narrow description size */
+    .heroTitle { font-size: 3.5rem; }
+    .heroSubtitle { font-size: 2rem; }
+    .heroDescription { font-size: 1rem; }
     .blankArea { min-height: 12rem; }
-}
-
-/* Wide (≥ 1024px) */
-@media (min-width: 1024px) {
+  }
+  
+  /* Wide (≥ 1024px) */
+  @media (min-width: 1024px) {
     .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
-        grid-template-areas:
-            "title-area"
-            "subtitle-area"
-            "description-area"
-            "blank-area"
-            "buttons-area"
-            "socials-area";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto auto auto auto; /* Define all rows */
+      grid-template-areas:
+        "title-area"
+        "subtitle-area"
+        "description-area"
+        "blank-area"
+        "buttons-area"
+        "socials-area";
     }
-    .heroTitle { font-size: 5rem; } /* Increased wide title size */
-    .heroSubtitle { font-size: 3rem; } /* Increased wide subtitle size */
-    .heroDescription { font-size: 1.5rem; } /* Increased wide description size */
+    .heroTitle { font-size: 5rem; }
+    .heroSubtitle { font-size: 3rem; }
+    .heroDescription { font-size: 1.5rem; }
     .blankArea { min-height: 12rem; }
-}
+  }

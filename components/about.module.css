@@ -1,10 +1,10 @@
 /* about.module.css */
 
 .aboutSection {
-    background-color: #1E1E1E;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-    color: var(--light-gray);
+    background-color: var(--background-dark);
+    padding-top: var(--section-padding-y);
+    padding-bottom: var(--section-padding-y);
+    color: var(--text-muted);
   }
   
   .aboutContent {
@@ -17,17 +17,17 @@
   .aboutText {
     width: 100%;
     background-color: rgba(55, 65, 81, 0.1);
-    border-radius: 0.5rem;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    padding: var(--card-padding);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--box-shadow-sm);
   }
   
   .aboutHeading {
     font-size: 1.75rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
-    color: white;
+    color: var(--text-light);
     position: relative;
     padding-bottom: 0.75rem;
   }
@@ -39,7 +39,7 @@
     left: 0;
     width: 3rem;
     height: 3px;
-    background-color: #4682B4;
+    background-color: var(--primary-blue);
   }
   
   .aboutParagraph {
@@ -53,18 +53,18 @@
   }
   
   .languageCard {
-    background-color: #2F4F4F;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--dark-slate-gray);
+    padding: var(--card-padding);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-sm);
+    border: 1px solid var(--card-border);
   }
   
   .cardHeading {
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
-    color: white;
+    color: var(--text-light);
     position: relative;
     padding-bottom: 0.75rem;
   }
@@ -76,7 +76,7 @@
     left: 0;
     width: 2rem;
     height: 3px;
-    background-color: #4682B4;
+    background-color: var(--primary-blue);
   }
   
   .languageItem {
@@ -95,7 +95,7 @@
   }
   
   .languageLevel {
-    color: #4682B4;
+    color: var(--primary-blue);
     font-weight: 500;
   }
   
@@ -109,7 +109,7 @@
   
   .progressFill {
     height: 100%;
-    background-color: #4682B4;
+    background-color: var(--primary-blue);
     border-radius: 999px;
     transition: width 1s ease-in-out;
   }
@@ -132,10 +132,10 @@
   /* Hover effects */
   .languageCard:hover {
     transform: translateY(-5px);
-    transition: transform 0.3s ease;
+    transition: var(--transition-standard);
   }
   
   .aboutText:hover {
     border-color: rgba(70, 130, 180, 0.3);
-    transition: border-color 0.3s ease;
+    transition: var(--transition-standard);
   }
