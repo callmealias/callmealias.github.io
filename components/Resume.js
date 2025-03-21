@@ -4,7 +4,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import styles from './resume.module.css';
 
 // Set the workerSrc for pdf.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.mjs`;
 
 export default function Resume() {
   const ref = useRef(null);
