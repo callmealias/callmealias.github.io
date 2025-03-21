@@ -1,10 +1,84 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
+import * as pdfjsLib from 'pdfjs-dist';
 import styles from './resume.module.css';
+
+// Set the workerSrc for pdf.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = `./pdf.worker.min.mjs`;
 
 export default function Resume() {
   const ref = useRef(null);
+  const canvasRef = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const [pdf, setPdf] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [numPages, setNumPages] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Load the PDF when the component mounts
+  useEffect(() => {
+    const loadPdf = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const pdfDoc = await pdfjsLib.getDocument('/resume.pdf').promise;
+        setPdf(pdfDoc);
+        setNumPages(pdfDoc.numPages);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error loading PDF:', err);
+        setError('Failed to load the resume. Please download it instead.');
+        setLoading(false);
+      }
+    };
+
+    loadPdf();
+  }, []);
+
+  // Render the current page whenever pageNumber or pdf changes
+  useEffect(() => {
+    const renderPage = async () => {
+      if (!pdf || !canvasRef.current) return;
+
+      const page = await pdf.getPage(pageNumber);
+      const viewport = page.getViewport({ scale: 1.0 });
+
+      const canvas = canvasRef.current;
+      const context = canvas.getContext('2d');
+
+      // Adjust canvas size based on the viewport and device pixel ratio
+      const scale = window.devicePixelRatio || 1;
+      canvas.height = viewport.height * scale;
+      canvas.width = viewport.width * scale;
+      canvas.style.width = `${viewport.width}px`;
+      canvas.style.height = `${viewport.height}px`;
+
+      // Render the PDF page into the canvas
+      const renderContext = {
+        canvasContext: context,
+        viewport: viewport,
+        transform: [scale, 0, 0, scale, 0, 0],
+      };
+      await page.render(renderContext).promise;
+    };
+
+    if (pdf) {
+      renderPage();
+    }
+  }, [pdf, pageNumber]);
+
+  const goToPreviousPage = () => {
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (pageNumber < numPages) {
+      setPageNumber(pageNumber + 1);
+    }
+  };
 
   return (
     <section id="resume" className={styles.resumeSection}>
@@ -43,19 +117,48 @@ export default function Resume() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className={styles.pdfViewerContainer}>
-                <object
-                  data="/resume.pdf"
-                  type="application/pdf"
-                  className={styles.pdfObject}
-                  title="Resume PDF"
-                >
-                  <p>
-                    It looks like your browser does not support PDF viewing. You can{' '}
-                    <a href="/resume.pdf" className={styles.fallbackLink}>
-                      download the resume here
-                    </a>.
-                  </p>
-                </object>
+                {loading ? (
+                  <div className={styles.loaderContainer}>
+                    <div className={styles.loader}></div>
+                    <p>Loading resume...</p>
+                  </div>
+                ) : error ? (
+                  <div className={styles.errorContainer}>
+                    <p>{error}</p>
+                    <a
+                      href="/resume.pdf"
+                      download="Kashif_Hasan_Resume.pdf"
+                      className={styles.downloadButton}
+                    >
+                      Download Resume
+                    </a>
+                  </div>
+                ) : (
+                  <>
+                    <canvas ref={canvasRef} className={styles.pdfCanvas} />
+                    {numPages > 1 && (
+                      <div className={styles.pageControls}>
+                        <button
+                          onClick={goToPreviousPage}
+                          disabled={pageNumber <= 1}
+                          className={styles.pageButton}
+                        >
+                          Previous
+                        </button>
+                        <span className={styles.pageInfo}>
+                          Page {pageNumber} of {numPages}
+                        </span>
+                        <button
+                          onClick={goToNextPage}
+                          disabled={pageNumber >= numPages}
+                          className={styles.pageButton}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             </motion.div>
           </motion.div>
