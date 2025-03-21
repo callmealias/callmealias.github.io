@@ -109,7 +109,6 @@
 
 .pdfCanvas {
     max-width: 100%;
-    width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: var(--box-shadow-sm);
@@ -204,16 +203,31 @@
 
     .resumeCard {
         width: 100%;
-        padding: 1rem;
+        padding: 0; /* Remove padding */
+        border: none; /* Remove border */
+        box-shadow: none; /* Remove shadow */
+        border-radius: 0; /* Remove border radius */
     }
 
-    .downloadButton {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+    .resumePreview {
+        border: none; /* Remove border */
+        border-radius: 0; /* Remove border radius */
+    }
+
+    .pdfViewerContainer {
+        padding: 0; /* Remove padding */
+        border-radius: 0; /* Remove border radius */
     }
 
     .pdfCanvas {
         width: 100%;
         max-width: none;
+        box-shadow: none; /* Remove shadow */
+        border-radius: 0; /* Remove border radius */
+    }
+
+    .downloadButton {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
     }
 }

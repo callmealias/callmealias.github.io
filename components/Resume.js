@@ -4,11 +4,12 @@ import * as pdfjsLib from 'pdfjs-dist';
 import styles from './resume.module.css';
 
 // Set the workerSrc for pdf.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `./pdf.worker.min.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 export default function Resume() {
   const ref = useRef(null);
   const canvasRef = useRef(null);
+  const containerRef = useRef(null); // Add a ref for the container to measure its width
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
   const [pdf, setPdf] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
@@ -36,29 +37,34 @@ export default function Resume() {
     loadPdf();
   }, []);
 
-  // Render the current page whenever pageNumber or pdf changes
+  // Render the current page whenever pageNumber, pdf, or container size changes
   useEffect(() => {
     const renderPage = async () => {
-      if (!pdf || !canvasRef.current) return;
+      if (!pdf || !canvasRef.current || !containerRef.current) return;
 
       const page = await pdf.getPage(pageNumber);
+      const containerWidth = containerRef.current.offsetWidth; // Get the container's width
+
+      // Calculate the scale to fit the container width while preserving aspect ratio
       const viewport = page.getViewport({ scale: 1.0 });
+      const scale = containerWidth / viewport.width;
+      const scaledViewport = page.getViewport({ scale });
 
       const canvas = canvasRef.current;
       const context = canvas.getContext('2d');
 
-      // Adjust canvas size based on the viewport and device pixel ratio
-      const scale = window.devicePixelRatio || 1;
-      canvas.height = viewport.height * scale;
-      canvas.width = viewport.width * scale;
-      canvas.style.width = `${viewport.width}px`;
-      canvas.style.height = `${viewport.height}px`;
+      // Adjust canvas size based on the scaled viewport and device pixel ratio
+      const deviceScale = window.devicePixelRatio || 1;
+      canvas.height = scaledViewport.height * deviceScale;
+      canvas.width = scaledViewport.width * deviceScale;
+      canvas.style.width = `${scaledViewport.width}px`;
+      canvas.style.height = `${scaledViewport.height}px`;
 
       // Render the PDF page into the canvas
       const renderContext = {
         canvasContext: context,
-        viewport: viewport,
-        transform: [scale, 0, 0, scale, 0, 0],
+        viewport: scaledViewport,
+        transform: [deviceScale, 0, 0, deviceScale, 0, 0],
       };
       await page.render(renderContext).promise;
     };
@@ -66,6 +72,10 @@ export default function Resume() {
     if (pdf) {
       renderPage();
     }
+
+    // Re-render on window resize to adjust for container width changes
+    window.addEventListener('resize', renderPage);
+    return () => window.removeEventListener('resize', renderPage);
   }, [pdf, pageNumber]);
 
   const goToPreviousPage = () => {
@@ -116,7 +126,7 @@ export default function Resume() {
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className={styles.pdfViewerContainer}>
+              <div className={styles.pdfViewerContainer} ref={containerRef}>
                 {loading ? (
                   <div className={styles.loaderContainer}>
                     <div className={styles.loader}></div>
