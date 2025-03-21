@@ -1,0 +1,223 @@
+/* resume.module.css */
+
+.resumeSection {
+    padding: 5rem 0;
+    background-color: var(--background-darker);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .sectionTitle::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--muted-teal), var(--primary-blue));
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+  
+  .resumeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  
+  .resumeCard {
+    width: 100%;
+    max-width: 1000px;
+    background: linear-gradient(145deg, var(--dark-slate-gray), #1e3a3a);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--primary-blue);
+    box-shadow: var(--box-shadow-md);
+    transition: var(--transition-standard);
+    padding: 2rem;
+  }
+  
+  .resumeCard:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-lg);
+    border-color: var(--secondary-green);
+  }
+  
+  .resumeIntro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .resumeIntro p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    max-width: 600px;
+  }
+  
+  .downloadButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(to right, var(--muted-teal), var(--primary-blue));
+    color: var(--text-light);
+    padding: 0.85rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-standard);
+    box-shadow: 0 4px 12px rgba(70, 130, 180, 0.3);
+  }
+  
+  .downloadButton:hover {
+    background: linear-gradient(to right, var(--primary-blue), var(--muted-teal));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(70, 130, 180, 0.5);
+    text-decoration: none;
+  }
+  
+  .downloadIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .resumePreview {
+    width: 100%;
+    background-color: var(--background-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .pdfViewerContainer {
+    width: 100%;
+    height: 700px;
+  }
+  
+  .pdfViewer {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Customize PDF viewer to match your site's theme */
+  :global .rpv-core__viewer {
+    background-color: rgba(30, 42, 42, 0.8) !important;
+  }
+  
+  :global .rpv-core__inner-page {
+    border: 1px solid var(--card-border) !important;
+    box-shadow: var(--box-shadow-sm) !important;
+  }
+  
+  :global .rpv-core__toolbar {
+    background-color: var(--dark-slate-gray) !important;
+    border-bottom: 1px solid var(--card-border) !important;
+  }
+  
+  :global .rpv-core__minimal-button {
+    color: var(--text-muted) !important;
+  }
+  
+  :global .rpv-core__minimal-button:hover {
+    background-color: var(--card-bg-hover) !important;
+    color: var(--text-light) !important;
+  }
+  
+  /* Media queries for responsive design */
+  @media (max-width: 1024px) {
+    .resumeCard {
+      max-width: 90%;
+      padding: 1.75rem;
+    }
+    
+    .pdfViewerContainer {
+      height: 600px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sectionTitle {
+      font-size: 2rem;
+    }
+    
+    .resumeCard {
+      max-width: 95%;
+      padding: 1.5rem;
+    }
+    
+    .pdfViewerContainer {
+      height: 500px;
+    }
+    
+    .resumeIntro p {
+      font-size: 1rem;
+    }
+    
+    /* Simplified toolbar for medium screens */
+    :global .rpv-default-layout__sidebar {
+      width: 200px !important;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .resumeSection {
+      padding: 3rem 0;
+    }
+    
+    .sectionTitle {
+      font-size: 1.75rem;
+    }
+    
+    .resumeContainer {
+      margin-top: 2rem;
+    }
+    
+    .resumeCard {
+      width: 100%;
+      padding: 1rem;
+    }
+    
+    .pdfViewerContainer {
+      height: 450px;
+    }
+    
+    .downloadButton {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    
+    .resumeIntro p {
+      margin-bottom: 1.2rem;
+    }
+    
+    /* Mobile-optimized PDF viewer */
+    :global .rpv-default-layout__main {
+      padding: 0 !important;
+    }
+    
+    :global .rpv-default-layout__sidebar {
+      width: 180px !important;
+    }
+    
+    :global .rpv-core__minimal-button-text {
+      display: none !important;
+    }
+  }
