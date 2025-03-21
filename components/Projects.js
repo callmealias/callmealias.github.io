@@ -77,7 +77,7 @@ export default function Projects() {
   return (
     <section id="projects" className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Projects</h2>
+        <h2 className={styles.sectionTitle}>Past Projects</h2>
 
         <div className={styles.grid} ref={ref}>
           {projects.map((project, index) => {

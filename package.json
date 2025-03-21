@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
     "framer-motion": "^12.5.0",
     "next": "15.2.2",
+    "pdfjs-dist": "^3.4.120",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
