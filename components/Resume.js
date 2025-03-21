@@ -22,6 +22,18 @@ export default function Resume() {
               <p>
                 View my complete resume below or download it for your reference.
               </p>
+              <a
+                href="/resume.pdf"
+                download="Kashif_Hasan_Resume.pdf"
+                className={styles.downloadButton}
+              >
+                <svg className={styles.downloadIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Resume
+              </a>
             </div>
 
             <motion.div
@@ -31,11 +43,19 @@ export default function Resume() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className={styles.pdfViewerContainer}>
-                <iframe
-                  src="/resume.pdf"
-                  className={styles.pdfIframe}
+                <object
+                  data="/resume.pdf"
+                  type="application/pdf"
+                  className={styles.pdfObject}
                   title="Resume PDF"
-                />
+                >
+                  <p>
+                    It looks like your browser does not support PDF viewing. You can{' '}
+                    <a href="/resume.pdf" className={styles.fallbackLink}>
+                      download the resume here
+                    </a>.
+                  </p>
+                </object>
               </div>
             </motion.div>
           </motion.div>

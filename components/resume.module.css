@@ -87,27 +87,48 @@
 
 .resumePreview {
     width: 100%;
-    height: 800px; /* Set a fixed height or adjust as needed */
+    /* Set a minimum height to ensure the container has space */
+    min-height: 600px;
     background-color: var(--background-dark);
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pdfViewerContainer {
     width: 100%;
+    /* Ensure the container takes up the full height of its parent */
     height: 100%;
     background-color: var(--background-dark);
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.pdfIframe {
+.pdfObject {
     width: 100%;
+    max-width: 800px; /* Limit the maximum width for larger screens */
     height: 100%;
+    min-height: 600px; /* Match the parent container's min-height */
     border: none;
     border-radius: 8px;
     background-color: var(--background-dark);
+    /* Ensure the PDF scales properly */
+    object-fit: contain;
+}
+
+.fallbackLink {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+
+.fallbackLink:hover {
+    color: var(--secondary-green);
 }
 
 /* Media queries for responsive design */
@@ -117,7 +138,11 @@
     }
 
     .resumePreview {
-        height: 700px;
+        min-height: 500px;
+    }
+
+    .pdfObject {
+        min-height: 500px;
     }
 }
 
@@ -132,7 +157,11 @@
     }
 
     .resumePreview {
-        height: 600px;
+        min-height: 450px;
+    }
+
+    .pdfObject {
+        min-height: 450px;
     }
 }
 
@@ -155,7 +184,12 @@
     }
 
     .resumePreview {
-        height: 500px;
+        min-height: 600px; /* Taller on mobile to fit A4 aspect ratio */
+    }
+
+    .pdfObject {
+        min-height: 600px;
+        max-width: 100%; /* Ensure it takes full width on mobile */
     }
 
     .downloadButton {
