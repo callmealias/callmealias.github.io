@@ -13,7 +13,7 @@ const Hero = () => {
           <source media="(min-width: 1024px)" srcSet="/images/hero-large.jpg" />
           <img 
             src="/images/hero-large.jpg" 
-            alt="Developer workspace with sunset view" 
+            alt="Kashif's workspace with sunset view" 
             className={styles.heroBackground}
             loading="lazy"
           />
