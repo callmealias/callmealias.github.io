@@ -13,7 +13,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       // Get hero section height to determine when to change navbar
-      const heroSection = document.getElementById('home');
+      const heroSection = document.getElementById('hero');
       const heroHeight = heroSection ? heroSection.offsetHeight - 100 : 300; // Default to 300px if hero not found
       
       setScrolled(window.scrollY > heroHeight);
