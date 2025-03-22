@@ -78,7 +78,7 @@ export default function Navbar() {
   // Subitems under experience
   const experienceSubitems = [
     { name: 'skills', label: 'Skills' },
-    { name: 'work-history', label: 'Work History' },
+    { name: 'workhistory', label: 'Work History' },
     { name: 'projects', label: 'Projects' },
     { name: 'resume', label: 'Resume' }
   ];
