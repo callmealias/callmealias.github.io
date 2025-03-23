@@ -139,3 +139,21 @@
     border-color: rgba(70, 130, 180, 0.3);
     transition: var(--transition-standard);
   }
+
+  /* Add to about.module.css */
+
+.accordionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .accordionIcon {
+    font-size: 1.5rem;
+    color: var(--text-light);
+  }
+  
+  .accordionContent {
+    margin-top: 1rem;
+  }
