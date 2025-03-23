@@ -171,3 +171,17 @@
     color: #d3d3d3;
     line-height: 1.5;
   }
+
+  .titleWithImage {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Matches spacing patterns in global styles */
+  }
+  
+  .projectImage {
+    width: 75px;
+    height: 75px;
+    object-fit: cover; /* Ensures the image fills the space nicely */
+    border-radius: 8px; /* Consistent with card border-radius adjusted for scale */
+    border: none; /* Removes the border */
+  }

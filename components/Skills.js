@@ -8,7 +8,7 @@ export default function Skills() {
   
   // State to track which categories are expanded
   const [expandedCategories, setExpandedCategories] = useState({
-    'Languages/Frameworks': true, // Initially expanded
+    'Languages/Frameworks': false,
     'Cloud/Platforms': false,
     'Methodologies': false,
     'AI Tools': false,

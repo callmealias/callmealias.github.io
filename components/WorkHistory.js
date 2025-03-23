@@ -22,7 +22,7 @@ export default function WorkHistory() {
       ]
     },
     {
-      company: "Research In Motion",
+      company: "Research In Motion (Blackberry)",
       url: "https://www.blackberry.com",
       period: "01/2012 - 08/2013",
       title: "Senior Embedded Firmware Engineer",
@@ -35,8 +35,8 @@ export default function WorkHistory() {
       ]
     },
     {
-      company: "Novatel Wireless",
-      url: "#",
+      company: "Novatel Wireless (Inseego)",
+      url: "https://inseego.com",
       period: "04/2007 - 09/2008",
       title: "Software Design Engineer",
       location: "San Diego, CA",
