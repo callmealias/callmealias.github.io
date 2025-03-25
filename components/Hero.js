@@ -10,7 +10,8 @@ const Hero = () => {
         <picture>
           <source media="(max-width: 639px)" srcSet="/images/hero-small.jpg" />
           <source media="(max-width: 1023px)" srcSet="/images/hero-medium.jpg" />
-          <source media="(min-width: 1024px)" srcSet="/images/hero-large.jpg" />
+          <source media="(max-width: 1279px)" srcSet="/images/hero-large.jpg" />
+          <source media="(min-width: 1280px)" srcSet="/images/hero-xl.jpg" />
           <img 
             src="/images/hero-large.jpg" 
             alt="Kashif's workspace with sunset view" 

@@ -60,89 +60,109 @@
     margin-bottom: 1.5rem;
 }
 
-.downloadButton {
+.actionBar {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.actionButton {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    background-color: var(--primary-blue);
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
     color: var(--text-light);
-    padding: 0.75rem 1.25rem;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: var(--transition-standard);
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.downloadButton:hover {
-    background-color: var(--secondary-green);
-    transform: translateY(-2px);
-    text-decoration: none;
+.actionButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
-.downloadIcon {
-    width: 1.25rem;
-    height: 1.25rem;
+.actionButton:active {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.actionButton svg {
+    stroke: var(--text-light);
+    stroke-width: 2.5;
+    fill: none;
 }
 
 .resumePreview {
     width: 100%;
+    height: 100%;
     background-color: var(--background-dark);
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .pdfViewerContainer {
     width: 100%;
+    height: 100%;
     background-color: var(--background-dark);
     border-radius: 8px;
     overflow: hidden;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    justify-content: center;
+}
+
+.navButtons {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.navButton {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.navButton:hover {
+    background-color: var(--secondary-green);
+}
+
+.navButton:disabled {
+    background-color: var(--text-muted);
+    cursor: not-allowed;
 }
 
 .pdfCanvas {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: var(--box-shadow-sm);
 }
 
-.pageControls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.pageButton {
-    background-color: var(--primary-blue);
-    color: var(--text-light);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: var(--transition-standard);
-}
-
-.pageButton:disabled {
-    background-color: var(--text-muted);
-    cursor: not-allowed;
-}
-
-.pageButton:hover:not(:disabled) {
-    background-color: var(--secondary-green);
-}
-
 .pageInfo {
     color: var(--text-light);
     font-size: 0.9rem;
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .loaderContainer,

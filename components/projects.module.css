@@ -96,16 +96,6 @@
     font-style: italic;
   }
   
-  /* Copied from workhistory.module.css */
-  .accordionIcon {
-    margin-left: 1rem;
-    color: white;
-    transition: transform 0.3s ease;
-  }
-  
-  .accordionIcon.expanded {
-    transform: rotate(180deg);
-  }
   
   .collapsibleContent {
     overflow: hidden;

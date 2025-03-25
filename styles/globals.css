@@ -229,6 +229,17 @@ button:hover, .button:hover {
   color: #60a5fa;
 }
 
+/* Accordion button styles */
+.accordionIcon {
+  color: var(--text-light);
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 1.5rem;
+}
+
+.accordionIcon.expanded {
+  transform: rotate(180deg);
+}
+
 /* Standardized media queries */
 @media (max-width: 768px) {
   section {

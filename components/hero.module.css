@@ -46,6 +46,8 @@
     display: grid;
     gap: .5rem; /* Adjust as needed */
     text-align: center;
+    align-content: center;
+    height: 100%;
   }
   
   .heroTitle {
@@ -69,6 +71,8 @@
   
   .blankArea {
     grid-area: blank-area;
+    flex-grow: 1;
+    min-height: 2rem;
   }
   
   .heroButtons {
@@ -77,6 +81,8 @@
     justify-content: center;
     gap: 1rem;
     grid-area: buttons-area;
+    margin-top: auto;
+    padding-bottom: 2rem;
   }
   
   .heroSocials {
@@ -84,6 +90,8 @@
     justify-content: center;
     gap: 2rem;
     grid-area: socials-area;
+    margin-top: auto;
+    padding-bottom: 2rem;
   }
   
   .heroSocials a {

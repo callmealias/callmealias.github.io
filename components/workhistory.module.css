@@ -49,17 +49,6 @@
     color: #D3D3D3;
 }
 
-.accordionIcon {
-    margin-left: 1rem;
-    color: #ffffff; /* White color for the +/- button */
-    font-size: 1rem; /* Smaller size */
-    transition: transform 0.3s ease;
-}
-
-.accordionIcon.expanded {
-    transform: rotate(180deg);
-    color: #ffffff; /* Keep white when expanded */
-}
 
 .accordionContent {
     padding: 1.5rem;

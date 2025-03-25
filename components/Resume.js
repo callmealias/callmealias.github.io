@@ -9,7 +9,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.mjs`;
 export default function Resume() {
   const ref = useRef(null);
   const canvasRef = useRef(null);
-  const containerRef = useRef(null); // Add a ref for the container to measure its width
+  const containerRef = useRef(null);
+  const renderTaskRef = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
   const [pdf, setPdf] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
@@ -17,7 +18,7 @@ export default function Resume() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Load the PDF when the component mounts
+  // Load the PDF when component mounts
   useEffect(() => {
     const loadPdf = async () => {
       try {
@@ -37,45 +38,72 @@ export default function Resume() {
     loadPdf();
   }, []);
 
-  // Render the current page whenever pageNumber, pdf, or container size changes
+  // Render the current page when PDF loads or page changes
   useEffect(() => {
     const renderPage = async () => {
       if (!pdf || !canvasRef.current || !containerRef.current) return;
 
-      const page = await pdf.getPage(pageNumber);
-      const containerWidth = containerRef.current.offsetWidth; // Get the container's width
+      // Cancel any existing render task
+      if (renderTaskRef.current) {
+        renderTaskRef.current.cancel();
+        renderTaskRef.current = null;
+      }
 
-      // Calculate the scale to fit the container width while preserving aspect ratio
-      const viewport = page.getViewport({ scale: 1.0 });
-      const scale = containerWidth / viewport.width;
-      const scaledViewport = page.getViewport({ scale });
+      try {
+        const page = await pdf.getPage(pageNumber);
+        const containerWidth = containerRef.current.offsetWidth;
 
-      const canvas = canvasRef.current;
-      const context = canvas.getContext('2d');
+        // Calculate the scale to fit the container width
+        const viewport = page.getViewport({ scale: 1.0 });
+        const scale = containerWidth / viewport.width;
+        const scaledViewport = page.getViewport({ scale });
 
-      // Adjust canvas size based on the scaled viewport and device pixel ratio
-      const deviceScale = window.devicePixelRatio || 1;
-      canvas.height = scaledViewport.height * deviceScale;
-      canvas.width = scaledViewport.width * deviceScale;
-      canvas.style.width = `${scaledViewport.width}px`;
-      canvas.style.height = `${scaledViewport.height}px`;
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
 
-      // Render the PDF page into the canvas
-      const renderContext = {
-        canvasContext: context,
-        viewport: scaledViewport,
-        transform: [deviceScale, 0, 0, deviceScale, 0, 0],
-      };
-      await page.render(renderContext).promise;
+        // Adjust canvas size
+        const deviceScale = window.devicePixelRatio || 1;
+        canvas.height = scaledViewport.height * deviceScale;
+        canvas.width = scaledViewport.width * deviceScale;
+        canvas.style.width = `${scaledViewport.width}px`;
+        canvas.style.height = `${scaledViewport.height}px`;
+
+        // Render the page
+        const renderContext = {
+          canvasContext: context,
+          viewport: scaledViewport,
+          transform: [deviceScale, 0, 0, deviceScale, 0, 0],
+        };
+        
+        const renderTask = page.render(renderContext);
+        renderTaskRef.current = renderTask;
+        await renderTask.promise;
+      } catch (error) {
+        if (error.name === 'RenderingCancelledException') {
+          console.log('Rendering cancelled');
+        } else {
+          console.error('Error rendering PDF:', error);
+        }
+      }
     };
 
     if (pdf) {
       renderPage();
     }
 
-    // Re-render on window resize to adjust for container width changes
-    window.addEventListener('resize', renderPage);
-    return () => window.removeEventListener('resize', renderPage);
+    // Re-render on window resize
+    const handleResize = () => {
+      if (pdf) {
+        renderPage();
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (renderTaskRef.current) {
+        renderTaskRef.current.cancel();
+      }
+    };
   }, [pdf, pageNumber]);
 
   const goToPreviousPage = () => {
@@ -102,21 +130,40 @@ export default function Resume() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.6 }}
           >
-            <div className={styles.resumeIntro}>
-              <p>
-                View my complete resume below or download it for your reference.
-              </p>
+            <div className={styles.actionBar}>
+              <button
+                className={styles.actionButton}
+                onClick={() => window.open('/resume.pdf', '_blank')}
+                title="View Fullscreen"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg>
+              </button>
+
+              <button
+                className={styles.actionButton}
+                onClick={() => window.print()}
+                title="Print Resume"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M6 9V2h12v7"></path>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <path d="M18 14H6v6h12v-6z"></path>
+                </svg>
+              </button>
+              
               <a
                 href="/resume.pdf"
-                download="Kashif_Hasan_Resume.pdf"
-                className={styles.downloadButton}
+                download="Resume.pdf"
+                className={styles.actionButton}
+                title="Download Resume"
               >
-                <svg className={styles.downloadIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
-                Download Resume
               </a>
             </div>
 
@@ -137,7 +184,7 @@ export default function Resume() {
                     <p>{error}</p>
                     <a
                       href="/resume.pdf"
-                      download="Kashif_Hasan_Resume.pdf"
+                      download="Resume.pdf"
                       className={styles.downloadButton}
                     >
                       Download Resume
@@ -147,21 +194,18 @@ export default function Resume() {
                   <>
                     <canvas ref={canvasRef} className={styles.pdfCanvas} />
                     {numPages > 1 && (
-                      <div className={styles.pageControls}>
+                      <div className={styles.navButtons}>
                         <button
                           onClick={goToPreviousPage}
                           disabled={pageNumber <= 1}
-                          className={styles.pageButton}
+                          className={styles.navButton}
                         >
                           Previous
                         </button>
-                        <span className={styles.pageInfo}>
-                          Page {pageNumber} of {numPages}
-                        </span>
                         <button
                           onClick={goToNextPage}
                           disabled={pageNumber >= numPages}
-                          className={styles.pageButton}
+                          className={styles.navButton}
                         >
                           Next
                         </button>
