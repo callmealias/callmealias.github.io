@@ -192,9 +192,16 @@ button:hover, .button:hover {
   background-color: var(--primary-blue);
   border-radius: 999px;
   transition: width 1s ease-in-out;
-}
-
-/* --- Specific Component Styles --- */
+  }
+  
+  /* Modifier classes for language proficiency levels */
+  .progress-fill-native { width: 100%; }
+  .progress-fill-fluent { width: 85%; }
+  .progress-fill-conversational { width: 60%; }
+  .progress-fill-basic { width: 30%; }
+  
+  
+  /* --- Specific Component Styles --- */
 
 /* Site-wide toggle button styling */
 .toggle-button {

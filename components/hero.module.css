@@ -104,7 +104,12 @@
 
 /* Inherits color/transition from global 'a' */
 .heroSocials a {
-  /* No color or transition needed here */
+  color: var(--text-light); /* Ensure base color is light */
+}
+
+/* Override default visited link color */
+.heroSocials a:visited {
+  color: var(--text-light);
 }
 
 .heroSocials a:hover {

@@ -69,6 +69,10 @@
     flex-shrink: 0; /* Prevent shrinking */
 }
 
+.categoryIcon svg path {
+  stroke: white;
+}
+
 .categoryTitle {
     font-size: 1.25rem;
     font-weight: 600;
@@ -109,19 +113,8 @@
 /* .progressBarContainer removed - use global .progress-bar-standard class in component */
 /* .progressBar removed - use global .progress-fill-standard class in component */
 
-/* Apply skill level gradients via modifier classes on .progress-fill-standard */
-.expertLevel {
-    background: var(--skill-gradient-expert); /* Use variable */
-}
-
-.advancedLevel {
-    background: var(--skill-gradient-advanced); /* Use variable */
-}
-
-.intermediateLevel {
-    background: var(--skill-gradient-intermediate); /* Use variable */
-}
-
-.beginnerLevel {
-    background: var(--skill-gradient-beginner); /* Use variable */
+.progressBar {
+  height: 0.5rem;
+  background-color: var(--primary-blue);
+  border-radius: 0.25rem;
 }

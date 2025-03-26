@@ -26,8 +26,8 @@ export default function Projects() {
       outcome: "Delivered custom websites with ordering, credit-card processing, and document management features",
       url: "#",
       image: "/images/web-development.svg"
-    },
-    {
+      },
+      {
       title: "Foresight Sports",
       period: "2015-2016",
       description: "Windows Embedded Device Consultant",
@@ -44,8 +44,8 @@ export default function Projects() {
       outcome: "Developed system state monitoring and network traffic injection for ad monetization",
       url: "#",
       image: "/images/web-development.svg"
-    },
-    {
+      },
+      {
       title: "Samsung Semiconductor",
       period: "2014",
       description: "Arm64 Assembly Consultant",
@@ -96,18 +96,27 @@ export default function Projects() {
                     className={styles.cardHeader}
                     onClick={() => toggleCard(project.title)}
                   >
-                    <div className={styles.headerLeft}>
-                      <div className={styles.titleWithImage}>
-                        <motion.img
-                          src={project.image}
-                          alt={`${project.title} Thumbnail`}
-                          className={styles.projectImage}
-                          whileHover={{ scale: 1.2 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                        <h3 className={styles.cardTitle}>
-                          <a
-                            href={project.url}
+                  <div className={styles.headerLeft}>
+                  <div className={styles.titleWithImage}>
+                  {project.image.startsWith('<svg') ? (
+                  <motion.div
+                  className={styles.projectImageWrapper}
+                  whileHover={{ scale: 1.3 }} // Kept scale at 1.3
+                  transition={{ duration: 0.3 }}
+                  dangerouslySetInnerHTML={{ __html: project.image }}
+                  />
+                  ) : (
+                  <motion.img
+                  src={project.image}
+                  alt={`${project.title} Thumbnail`}
+                  className={styles.projectImage}
+                  whileHover={{ scale: 1.3 }} // Kept scale at 1.3
+                  transition={{ duration: 0.3 }}
+                  />
+                  )}
+                  <h3 className={styles.cardTitle}>
+                  <a
+                  href={project.url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className={styles.titleLink}

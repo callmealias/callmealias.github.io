@@ -108,18 +108,10 @@ export default function Skills() {
     }
   ];
 
-  // Function to determine color based on skill level
-  const getSkillColor = (level) => {
-    if (level >= 90) return styles.expertLevel;
-    if (level >= 80) return styles.advancedLevel;
-    if (level >= 70) return styles.intermediateLevel;
-    return styles.beginnerLevel;
-  };
-
   return (
     <section id="skills" className={styles.skillsSection}>
       <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Skills</h2>
+        <h2 className="section-title">Skills</h2>
         
         <div className={styles.categoriesContainer} ref={ref}>
           {skillCategories.map((category, catIndex) => (
@@ -168,8 +160,8 @@ export default function Skills() {
                         <span className={styles.skillLevel}>{skill.level}%</span>
                       </div>
                       <div className={styles.progressBarContainer}>
-                        <motion.div 
-                          className={`${styles.progressBar} ${getSkillColor(skill.level)}`}
+                        <motion.div
+                          className={styles.progressBar}
                           initial={{ width: "0%" }}
                           animate={{ width: `${skill.level}%` }}
                           transition={{ duration: 0.8, delay: 0.2 + skillIndex * 0.05 }}

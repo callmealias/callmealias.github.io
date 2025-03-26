@@ -184,9 +184,26 @@
 }
 
 .projectImage {
-  width: 75px;
-  height: 75px;
-  object-fit: cover;
-  border-radius: 8px; /* Keep specific radius */
+width: 90px; /* Increased size */
+height: 90px; /* Increased size */
+object-fit: cover;
+border-radius: 8px; /* Keep specific radius */
   border: none;
-}
+  }
+  
+  /* Wrapper for inline SVGs to maintain size and layout */
+  .projectImageWrapper {
+  width: 90px; /* Match .projectImage size */
+  height: 90px; /* Match .projectImage size */
+  display: inline-block; /* Or block, depending on layout */
+  border-radius: 8px; /* Match .projectImage radius */
+  overflow: hidden; /* Clip SVG if needed */
+  transition: transform 0.3s ease; /* Apply transition to the wrapper */
+  }
+  
+  .projectImageWrapper > svg { /* Style the SVG inside the wrapper */
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Or contain, depending on desired SVG scaling */
+  }

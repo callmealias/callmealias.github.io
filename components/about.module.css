@@ -49,15 +49,28 @@
 
 /* Uses .card-standard from globals.css for base styles */
 .languageCard {
-  /* Inherits padding, border, radius, shadow, transition from .card-standard */
   background-color: var(--dark-slate-gray); /* Override background */
+  border-radius: var(--border-radius);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--box-shadow-sm);
+  padding: var(--card-padding);
+  transition: var(--transition-standard);
+  /* Inherits padding, border, radius, shadow, transition from .card-standard */
   /* Hover effect inherited from .card-standard:hover */
+}
+
+.languageCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--category-header-bg);
 }
 
 .cardHeading {
   font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
   color: var(--text-light);
   position: relative;
   padding-bottom: 0.75rem;
@@ -73,9 +86,26 @@
   width: 2rem; /* Different width than .aboutHeading */
   height: 3px;
   background-color: var(--primary-blue);
-}
-
-.languageItem {
+  }
+  
+  /* Wrapper for icon + title in language card header */
+  .languageTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Spacing between icon and title */
+  }
+  
+  /* Style for the language icon */
+  .languageIcon {
+  color: var(--text-light); /* Match text color */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem; /* Adjust size as needed */
+  height: 1.5rem;
+  }
+  
+  .languageItem {
   margin-bottom: 1.5rem;
 }
 
