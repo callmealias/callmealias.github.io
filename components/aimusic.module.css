@@ -1,128 +1,134 @@
 /* aimusic.module.css */
 
+/* Uses .section-standard from globals.css for padding */
 .aiMusicSection {
-    background-color: var(--dark-slate-gray);
-    color: var(--text-muted);
-    padding-top: var(--section-padding-y);
-    padding-bottom: var(--section-padding-y);
-    position: relative; /* For positioning buttons */
-  }
-  
-  .description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .sunoLink,
-  .beholdifyLink {
-    color: var(--muted-teal);
-    font-weight: bold;
-  }
-  
-  .carouselContainer {
-    position: relative; /* Container for carousel and buttons */
-    display: flex;
-    align-items: center; /* Vertically center carousel and buttons */
-    margin-bottom: 2rem; /* Spacing below carousel */
-  }
-  
-  .carouselTrack {
-    display: flex;
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-    scroll-snap-type: x mandatory; /* Enable snapping */
-    gap: 1.5rem; /* Spacing between slides */
-    transition: transform 0.5s ease-in-out; /* Smooth transition for scrolling */
-    padding-bottom: 1rem; /* Add padding to accommodate scrollbar if needed */
-  }
-  
+  background-color: var(--dark-slate-gray); /* Keep specific background if needed */
+  color: var(--text-muted);
+  position: relative; /* For positioning buttons */
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.sunoLink,
+.beholdifyLink {
+  color: var(--primary-accent-blue); /* Updated variable */
+  font-weight: bold;
+}
+
+.carouselContainer {
+  position: relative; /* Container for carousel and buttons */
+  display: flex;
+  align-items: center; /* Vertically center carousel and buttons */
+  margin-bottom: 2rem; /* Spacing below carousel */
+}
+
+.carouselTrack {
+  display: flex;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  scroll-snap-type: x mandatory; /* Enable snapping */
+  gap: 1.5rem; /* Spacing between slides */
+  transition: transform 0.5s ease-in-out; /* Smooth transition for scrolling */
+  padding-bottom: 1rem; /* Add padding to accommodate scrollbar if needed */
+  /* Consider adding scrollbar styling if you want it visible but styled */
+}
+
+.videoSlide {
+  width: 100%; /* Each slide takes full width on mobile */
+  min-width: 80%; /* Minimum width to prevent very narrow slides on wider screens */
+  scroll-snap-align: start; /* Snap slides to the start */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0; /* Prevent slides from shrinking */
+}
+
+.videoContainer {
+  width: 100%;
+  max-width: 560px; /* Adjust max width as needed */
+  aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+  overflow: hidden; /* Clip content to aspect ratio */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.videoFrame {
+  width: 100%;
+  height: 100%;
+  border: none; /* Remove iframe border */
+}
+
+.videoTitle {
+  margin-top: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3); /* Slightly visible background */
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%; /* Make buttons circular */
+  width: 40px; /* Fixed size */
+  height: 40px; /* Fixed size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  z-index: 10; /* Ensure buttons are above slides */
+}
+
+.carouselButton:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.carouselButton.prev {
+  left: -1rem; /* Adjust position as needed */
+}
+
+.carouselButton.next {
+  right: -1rem; /* Adjust position as needed */
+}
+
+/* Medium screens and above */
+@media (min-width: 768px) {
   .videoSlide {
-    width: 100%; /* Each slide takes full width on mobile */
-    min-width: 80%; /* Minimum width to prevent very narrow slides on wider screens */
-    scroll-snap-align: start; /* Snap slides to the start */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 70%; /* Wider slides on larger screens */
+    min-width: 500px; /* Adjust min-width for larger screens */
   }
-  
-  .videoContainer {
-    width: 100%;
-    max-width: 560px; /* Adjust max width as needed */
-    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
-    overflow: hidden; /* Clip content to aspect ratio */
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-sm);
-  }
-  
-  .videoFrame {
-    width: 100%;
-    height: 100%;
-    border: none; /* Remove iframe border */
-  }
-  
-  .videoTitle {
-    margin-top: 0.75rem;
-    font-weight: bold;
-    text-align: center;
-    color: var(--text-light);
-  }
-  
-  .carouselButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--text-light);
-    cursor: pointer;
-    padding: 0.5rem;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-  }
-  
-  .carouselButton:hover {
-    opacity: 1;
-  }
-  
   .carouselButton.prev {
-    left: -1rem; /* Adjust position as needed */
+    left: 1rem; /* Adjust position for larger screens */
   }
-  
+
   .carouselButton.next {
-    right: -1rem; /* Adjust position as needed */
+    right: 1rem; /* Adjust position for larger screens */
   }
-  
-  /* Medium screens and above */
-  @media (min-width: 768px) {
-    .videoSlide {
-      width: 70%; /* Wider slides on larger screens */
-      min-width: 500px; /* Adjust min-width for larger screens */
-    }
-    .carouselButton.prev {
-      left: 1rem; /* Adjust position for larger screens */
-    }
-  
-    .carouselButton.next {
-      right: 1rem; /* Adjust position for larger screens */
-    }
+}
+
+/* Wide screens */
+@media (min-width: 1024px) {
+  .videoSlide {
+    width: 50%; /* Even wider slides on large screens */
+    min-width: 400px; /* Adjust min-width for very wide screens */
   }
-  
-  /* Wide screens */
-  @media (min-width: 1024px) {
-    .videoSlide {
-      width: 50%; /* Even wider slides on large screens */
-      min-width: 400px; /* Adjust min-width for very wide screens */
-    }
-    .carousel {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-    .carouselButton.prev {
-      left: 2rem; /* Adjust position for wider screens */
-    }
-  
-    .carouselButton.next {
-      right: 2rem; /* Adjust position for wider screens */
-    }
+  /* Removed .carousel padding - handle spacing via container/gap */
+  .carouselButton.prev {
+    left: 2rem; /* Adjust position for wider screens */
   }
+
+  .carouselButton.next {
+    right: 2rem; /* Adjust position for wider screens */
+  }
+}

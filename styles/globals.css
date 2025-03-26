@@ -2,44 +2,118 @@
 @import "tailwindcss";
 
 :root {
-  /* Colors */
-  --dark-slate-gray: #2F4F4F;
-  --light-gray: #D3D3D3;
-  --muted-teal: #3B82F6; /* Updated to a blue that matches the sunset image */
-  --olive-green: #4F46E5; /* Updated to indigo to complement the blue */
+  /* --- Colors --- */
+  /* Primary Palette */
+  --dark-slate-gray: #2F4F4F; /* Base background */
+  --background-dark: #1E1E1E; /* Darker background variant */
+  --background-darker: #1A2A2A; /* Even darker background */
+  --text-light: #FFFFFF;      /* Primary text */
+  --text-muted: #D3D3D3;      /* Secondary/muted text */
+
+  /* Accent Palette */
+  --primary-blue: #4682B4;        /* A standard blue */
+  --secondary-green: #6B8E23;     /* A standard green */
+  --primary-accent-blue: #3B82F6;  /* Was --muted-teal, used for links/buttons */
+  --primary-accent-indigo: #4F46E5; /* Was --olive-green, used for button hover */
   --black: #121212;
-  --dark-gray: #1E1E1E;
-  
-  /* Additional standardized colors */
-  --primary-blue: #4682B4;
-  --secondary-green: #6B8E23;
-  --background-dark: #1E1E1E;
-  --background-darker: #1A2A2A;
-  --text-light: #FFFFFF;
-  --text-muted: #D3D3D3;
+
+  /* Component-Specific */
   --card-bg: rgba(55, 65, 81, 0.3);
-  --card-bg-hover: rgba(70, 130, 180, 0.3);
+  --card-bg-hover: rgba(70, 130, 180, 0.3); /* Note: This seems unused if hover changes border/shadow */
   --card-border: rgba(255, 255, 255, 0.1);
-  
-  /* Spacing */
+  /* Navbar */
+  --navbar-bg-scrolled: var(--black); /* Solid black */
+  --navbar-bg-mobile: rgba(0, 0, 0, 0.9); /* Semi-transparent black for mobile menu */
+  --navbar-bg-mobile-initial: rgba(0, 0, 0, 0.5); /* Slightly visible on mobile initially */
+  --navbar-item-bg-hover: rgba(75, 85, 99, 0.95); /* Grayish hover for items */
+  --navbar-logo-bg-scrolled: rgba(255, 255, 255, 0.1); /* Subtle light background for scrolled logo */
+  /* Action Buttons (e.g., PDF viewer controls) */
+  --action-button-bg: rgba(0, 0, 0, 0.05);
+  --action-button-bg-hover: rgba(0, 0, 0, 0.1);
+  --action-button-bg-active: rgba(0, 0, 0, 0.15);
+  --action-button-border: rgba(0, 0, 0, 0.1);
+  --action-button-border-hover: rgba(0, 0, 0, 0.2);
+  /* Skills */
+  --category-header-bg: rgba(70, 130, 180, 0.2); /* primary-blue with alpha? */
+  --skill-gradient-expert: linear-gradient(90deg, var(--primary-blue), var(--secondary-green));
+  /* TODO: Consider aligning these gradient colors with the theme palette */
+  --skill-gradient-advanced: linear-gradient(90deg, #3498db, #2ecc71);
+  --skill-gradient-intermediate: linear-gradient(90deg, #f39c12, #e67e22);
+  --skill-gradient-beginner: linear-gradient(90deg, #e74c3c, #c0392b);
+
+  /* --- Layout & Spacing --- */
   --section-padding-y: 6rem;
   --card-padding: 2rem;
   --border-radius: 0.5rem;
-  
+
+  /* --- Effects --- */
   /* Shadows */
   --box-shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
   --box-shadow-md: 0 6px 12px rgba(0, 0, 0, 0.15);
   --box-shadow-lg: 0 12px 20px rgba(0, 0, 0, 0.25);
-  
   /* Transitions */
   --transition-standard: all 0.3s ease;
-  
-  /* Media breakpoints */
+
+  /* --- Breakpoints --- */
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
 }
 
+/* --- Base & Reset --- */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Roboto', 'Open Sans', sans-serif;
+  background-color: var(--dark-slate-gray);
+  color: var(--text-muted); /* Use --text-muted as the base text color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  color: var(--text-light); /* Headings should likely use the lighter text color */
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary-accent-blue);
+  text-decoration: none;
+  transition: var(--transition-standard);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button, .button {
+  background-color: var(--primary-accent-blue);
+  color: var(--text-light);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: var(--transition-standard);
+}
+
+button:hover, .button:hover {
+  background-color: var(--primary-accent-indigo);
+  transform: scale(1.05);
+}
+
+/* --- Layout Containers --- */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr; /* Single column */
@@ -52,20 +126,16 @@
 
 .main-content {
   grid-area: main;
-  padding-top: 60px; /* Add padding-top to create space below navbar */
+  padding-top: 60px; /* Space below fixed/sticky navbar */
 }
 
-/* All screen sizes now use the same grid layout since navbar is at the top */
-@media (min-width: 640px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "navbar"
-      "main";
-  }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-/* Common utility classes */
+/* --- Common Utility Classes --- */
 .section-standard {
   padding-top: var(--section-padding-y);
   padding-bottom: var(--section-padding-y);
@@ -80,15 +150,18 @@
   transition: var(--transition-standard);
 }
 
-.card-hover-effect {
+/* Combined hover effect from old .card-hover-effect */
+.card-standard:hover {
   transform: translateY(-5px);
   box-shadow: var(--box-shadow-lg);
   border-color: var(--secondary-green);
+  /* background-color: var(--card-bg-hover); /* Optional: Add if background change is desired */
 }
 
 .heading-underline {
   position: relative;
   padding-bottom: 0.75rem;
+  display: inline-block; /* Ensure it only takes width of content */
 }
 
 .heading-underline:after {
@@ -121,72 +194,13 @@
   transition: width 1s ease-in-out;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  scroll-behavior: smooth;
-}
+/* --- Specific Component Styles --- */
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  font-family: 'Roboto', 'Open Sans', sans-serif;
-  background-color: var(--dark-slate-gray);
-  color: var(--light-gray);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 1rem;
-}
-
-p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-a {
-  color: var(--muted-teal);
-  text-decoration: none;
-  transition: var(--transition-standard);
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-section {
-  padding: 5rem 1rem;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-button, .button {
-  background-color: var(--muted-teal);
-  color: var(--text-light);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: var(--transition-standard);
-}
-
-button:hover, .button:hover {
-  background-color: var(--olive-green);
-  transform: scale(1.05);
-}
-
-/* New site-wide toggle button styling */
+/* Site-wide toggle button styling */
 .toggle-button {
   background: none;
   border: none;
-  color: var(--light-gray);
+  color: var(--text-light); /* Use light text color */
   font-size: 1.25rem;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -199,14 +213,17 @@ button:hover, .button:hover {
 }
 
 .toggle-button:hover {
-  color: var(--muted-teal);
+  color: var(--primary-accent-blue); /* Use accent blue for hover */
 }
 
+/* Section Title with Underline */
 .section-title {
   font-size: 2.5rem;
   margin-bottom: 2rem;
   text-align: center;
   position: relative;
+  color: var(--text-light); /* Ensure section titles use light text */
+  padding-bottom: 1rem; /* Add padding to separate text from underline */
 }
 
 .section-title:after {
@@ -214,22 +231,23 @@ button:hover, .button:hover {
   position: absolute;
   width: 60px;
   height: 4px;
-  background-color: var(--muted-teal);
-  bottom: -10px;
+  background-color: var(--primary-accent-blue); /* Use accent blue */
+  bottom: 0; /* Position underline relative to padding-bottom */
   left: 50%;
   transform: translateX(-50%);
 }
 
+/* Social Media Links */
 .social-link {
   color: var(--text-light);
   transition: color 0.3s ease-in-out;
 }
 
 .social-link:hover {
-  color: #60a5fa;
+  color: var(--primary-accent-blue); /* Use variable */
 }
 
-/* Accordion button styles */
+/* Accordion Icons */
 .accordionIcon {
   color: var(--text-light);
   transition: transform 0.3s ease, color 0.3s ease;
@@ -240,13 +258,24 @@ button:hover, .button:hover {
   transform: rotate(180deg);
 }
 
-/* Standardized media queries */
+/* --- Media Queries --- */
 @media (max-width: 768px) {
-  section {
-    padding: 3rem 1rem;
+  /* Adjust section padding for smaller screens */
+  .section-standard {
+    padding-top: calc(var(--section-padding-y) / 1.5);
+    padding-bottom: calc(var(--section-padding-y) / 1.5);
   }
 
   .section-title {
     font-size: 2rem;
   }
+
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+}
+
+@media (max-width: 640px) {
+  /* Further adjustments for very small screens if needed */
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
 }

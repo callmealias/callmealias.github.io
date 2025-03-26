@@ -1,50 +1,57 @@
 /* resume.module.css */
 
+/* Uses .section-standard from globals.css for padding */
 .resumeSection {
-    padding: 5rem 0;
-    background-color: var(--background-darker);
+    background-color: var(--background-darker); /* Use variable */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
+/* .container removed - use global .container class in component */
 
+/* Re-introduce sectionTitle to match global centered style */
 .sectionTitle {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--text-light);
-    text-align: center;
-    margin-bottom: 2rem;
-    border-bottom: 3px solid var(--primary-blue);
-    display: inline-block;
-    padding-bottom: 0.5rem;
+  font-size: 2.5rem; /* Match global */
+  margin-bottom: 2rem; /* Match global */
+  text-align: center; /* Match global */
+  position: relative; /* Match global */
+  color: var(--text-light); /* Match global */
+  padding-bottom: 1rem; /* Match global */
+  display: block; /* Ensure it takes full width for centering */
+}
+
+.sectionTitle:after {
+  content: ''; /* Match global */
+  position: absolute; /* Match global */
+  width: 60px; /* Match global */
+  height: 4px; /* Match global */
+  background-color: var(--primary-accent-blue); /* Match global */
+  bottom: 0; /* Match global */
+  left: 50%; /* Match global */
+  transform: translateX(-50%); /* Match global */
 }
 
 .resumeContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 3rem; /* Specific margin */
 }
 
+/* Uses .card-standard for base border, radius, shadow, transition */
 .resumeCard {
     width: 100%;
-    max-width: 1000px;
-    background: linear-gradient(145deg, var(--dark-slate-gray), #1e3a3a);
-    border-radius: 12px;
+    max-width: 1000px; /* Specific max-width */
+    background: linear-gradient(145deg, var(--dark-slate-gray), var(--background-darker)); /* Use variables, adjusted gradient */
+    /* Inherits border-radius, border, box-shadow, transition */
+    border-color: var(--primary-blue); /* Override border color */
+    border-width: 2px; /* Specific border width */
     overflow: hidden;
-    border: 2px solid var(--primary-blue);
-    box-shadow: var(--box-shadow-md);
-    transition: var(--transition-standard);
-    padding: 1.5rem;
+    padding: 1.5rem; /* Specific padding */
 }
 
+/* Inherits hover effect from .card-standard:hover */
 .resumeCard:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--box-shadow-lg);
-    border-color: var(--secondary-green);
+    /* Inherits transform, box-shadow */
+    border-color: var(--secondary-green); /* Override hover border color */
 }
 
 .resumeIntro {
@@ -55,9 +62,10 @@
     text-align: center;
 }
 
+/* Uses global 'p' styles */
 .resumeIntro p {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
+    color: var(--text-light); /* Override default text color */
+    margin-bottom: 1.5rem; /* Specific margin */
 }
 
 .actionBar {
@@ -65,58 +73,59 @@
     justify-content: center;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--action-button-bg); /* Use variable */
     padding: 0.5rem;
     border-radius: 4px;
 }
 
 .actionButton {
-    /* Removed flex properties */
-    padding: 0.5rem; /* Keep padding */
-    background-color: transparent;
+    padding: 0.5rem;
+    background-color: transparent; /* Start transparent */
     color: var(--text-light);
     border-radius: 2px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: var(--text-light);
-    border-radius: 2px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--action-button-border); /* Use variable */
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease; /* Use var(--transition-standard)? */
+    /* display: flex; Removed - parent .actionBar handles button alignment */
+    /* align-items: center; Removed */
+    /* justify-content: center; Removed */
+    line-height: 0; /* Helps center SVG vertically if needed */
 }
 
 .actionButton:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--action-button-bg-hover); /* Use variable */
+    border-color: var(--action-button-border-hover); /* Use variable */
 }
 
 .actionButton:active {
-    background-color: rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Reverted .actionButton svg rule */
-  .actionButton svg {
+    background-color: var(--action-button-bg-active); /* Use variable */
+}
+
+.actionButton svg {
     stroke: var(--text-light);
     stroke-width: 2.5;
     fill: none;
-    stroke-linecap: round; /* Added back */
-    stroke-linejoin: round; /* Added back */
-  }
-  
-  .resumePreview {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    width: 1em; /* Ensure consistent icon size */
+    height: 1em;
+}
+
+.resumePreview {
     width: 100%;
-    height: 100%;
-    background-color: var(--background-dark);
+    /* height: 100%; Removed, let content dictate height */
+    background-color: var(--background-dark); /* Use variable */
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--card-border); /* Use variable */
     display: flex;
     justify-content: center;
 }
 
 .pdfViewerContainer {
     width: 100%;
-    height: 100%;
-    background-color: var(--background-dark);
+    /* height: 100%; Removed */
+    background-color: var(--background-dark); /* Use variable */
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -124,6 +133,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 400px; /* Add min-height for loading/error states */
 }
 
 .navButtons {
@@ -134,30 +144,27 @@
     z-index: 10;
 }
 
+/* Uses global .button styles */
 .navButton {
-    padding: 0.5rem 1rem;
-    background-color: var(--primary-blue);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    /* Inherits base styles from .button */
+    padding: 0.5rem 1rem; /* Override padding */
 }
 
+/* Inherits hover from .button:hover */
 .navButton:hover {
-    background-color: var(--secondary-green);
+    /* Inherits background, transform */
 }
 
 .navButton:disabled {
-    background-color: var(--text-muted);
+    background-color: var(--text-muted); /* Use variable */
     cursor: not-allowed;
+    transform: none; /* Disable hover transform */
 }
 
 .pdfCanvas {
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: var(--box-shadow-sm);
+    /* Removed border-radius and shadow, applied to container */
 }
 
 .pageInfo {
@@ -174,13 +181,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    height: 100%; /* Fill container */
+    min-height: 200px; /* Ensure space */
     color: var(--text-light);
+    padding: 2rem; /* Add padding */
 }
 
 .loader {
-    border: 4px solid var(--text-muted);
-    border-top: 4px solid var(--primary-blue);
+    border: 4px solid var(--text-muted); /* Use variable */
+    border-top: 4px solid var(--primary-blue); /* Use variable */
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
@@ -193,7 +202,7 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Media queries for responsive design */
+/* --- Media Queries --- */
 @media (max-width: var(--breakpoint-lg)) {
     .resumeCard {
         max-width: 90%;
@@ -201,10 +210,7 @@
 }
 
 @media (max-width: var(--breakpoint-md)) {
-    .sectionTitle {
-        font-size: 2rem;
-    }
-
+    /* .sectionTitle handled by global styles */
     .resumeCard {
         max-width: 95%;
         padding: 1.25rem;
@@ -212,45 +218,40 @@
 }
 
 @media (max-width: var(--breakpoint-sm)) {
-    .resumeSection {
-        padding: 3rem 0;
-    }
-
-    .sectionTitle {
-        font-size: 1.75rem;
-    }
+    /* .resumeSection padding handled by global .section-standard */
+    /* .sectionTitle handled by global styles */
 
     .resumeContainer {
         margin-top: 2rem;
     }
 
+    /* Adjust card styling for small screens */
     .resumeCard {
         width: 100%;
-        padding: 0; /* Remove padding */
-        border: none; /* Remove border */
-        box-shadow: none; /* Remove shadow */
-        border-radius: 0; /* Remove border radius */
+        max-width: 100%; /* Takes full width */
+        padding: 1rem; /* Reduced padding */
+        border-width: 1px; /* Thinner border */
+        border-radius: 8px; /* Slightly smaller radius */
+        box-shadow: var(--box-shadow-sm); /* Keep a subtle shadow */
+        /* Keep background gradient */
     }
 
     .resumePreview {
-        border: none; /* Remove border */
-        border-radius: 0; /* Remove border radius */
+        border: none;
+        border-radius: 0;
     }
 
     .pdfViewerContainer {
-        padding: 0; /* Remove padding */
-        border-radius: 0; /* Remove border radius */
+        padding: 0;
+        border-radius: 0;
     }
 
     .pdfCanvas {
-        width: 100%;
-        max-width: none;
-        box-shadow: none; /* Remove shadow */
-        border-radius: 0; /* Remove border radius */
+        /* width: 100%; */ /* Already set */
+        /* max-width: none; */ /* Not needed */
+        box-shadow: none;
+        border-radius: 0;
     }
 
-    .downloadButton {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-    }
+    /* .downloadButton uses .button styles */
 }

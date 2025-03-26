@@ -1,234 +1,222 @@
 /* navbar.module.css */
 
 .navbar {
-    grid-area: navbar;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    transition: var(--transition-standard);
-    background-color: transparent; /* Start fully transparent */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+  grid-area: navbar;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem; /* Default padding */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Use var(--transition-standard)? */
+  background-color: transparent; /* Start fully transparent */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.scrolled {
+  background-color: var(--navbar-bg-scrolled); /* Use variable */
+  box-shadow: var(--box-shadow-sm);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  z-index: 1001; /* Ensure logo stays above other elements */
+  margin-left: auto; /* Move logo to the right */
+}
+
+.logo {
+  width: 40px; /* Default size */
+  height: 40px; /* Default size */
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; /* Smooth transition */
+  border-radius: 50%; /* Keep border-radius for smooth transition */
+  padding: 0; /* Start with no padding */
+  background-color: transparent; /* Start transparent */
+}
+
+/* Add a visible background to the logo when navbar is scrolled */
+.scrolled .logo {
+  background-color: var(--navbar-logo-bg-scrolled); /* Use variable */
+  padding: 4px; /* Add padding */
+  box-shadow: 0 0 8px rgba(0, 212, 212, 0.5); /* Teal glow - keep specific color? Or make variable? */
+}
+
+.rockAnimation {
+  animation: rock 0.75s ease-in-out;
+}
+
+@keyframes rock {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Base menu styles (hidden state) */
+.menu {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateY(-100%);
+  position: absolute; /* Default positioning for desktop dropdown */
+  top: 100%;
+  right: 0;
+  background-color: var(--navbar-bg-mobile); /* Use mobile bg for consistency */
+  padding: 0.5rem;
+  border-radius: 0 0 0 8px; /* Rounded bottom-left */
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Visible menu state */
+.expanded {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto; /* Allow interaction when visible */
+}
+
+.navItemContainer {
+  position: relative; /* For submenu positioning */
+}
+
+.navItem {
+  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.navItem:hover,
+.navItem.active {
+  background-color: var(--navbar-item-bg-hover); /* Use variable */
+  text-decoration: none; /* Override default underline */
+}
+
+.dropdownArrow {
+  font-size: 0.6rem;
+  margin-left: 0.4rem;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--navbar-bg-mobile); /* Use variable */
+  min-width: 150px; /* Default min-width */
+  border-radius: 0 0 4px 4px; /* Rounded bottom */
+  overflow: hidden;
+  z-index: 1002; /* Above navbar items */
+  /* Submenu visibility handled by parent component state */
+}
+
+.submenuItem {
+  color: var(--text-light);
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.submenuItem:hover {
+  background-color: var(--navbar-item-bg-hover); /* Use variable */
+}
+
+/* --- Media Queries --- */
+
+/* Mobile (≤ 639px) */
+@media (max-width: 639px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+    background-color: var(--navbar-bg-mobile-initial); /* Slightly visible background */
   }
-  
+
   .scrolled {
-    background-color: rgba(0, 0, 0, 1); /* Change to solid black when scrolled */
-    box-shadow: var(--box-shadow-sm);
+    background-color: var(--navbar-bg-scrolled); /* Solid black when scrolled */
   }
-  
-  .logoContainer {
-    display: flex;
-    align-items: center;
-    z-index: 1001; /* Ensure logo stays above other elements */
-    margin-left: auto; /* Move logo to the right */
-  }
-  
+
   .logo {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    position: relative; /* Ensure positioning context for the image */
-    display: flex;
-    align-items: center;
+    width: 36px;
+    height: 36px;
+  }
+
+  .menu {
+    position: fixed; /* Fixed position for full screen */
+    top: 56px; /* Adjust based on actual navbar height */
+    right: 0;
+    width: 100%;
+    flex-direction: column; /* Stack items vertically */
+    border-radius: 0; /* No border radius */
+    /* Inherit background, padding, transform, opacity from base */
+  }
+
+  .navItem {
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    margin: 0.25rem 0;
     justify-content: center;
   }
-  
-  /* Add a visible background to the logo when navbar is scrolled */
-  .scrolled .logo {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle light background */
-    border-radius: 50%; /* Circular background */
-    padding: 4px; /* Add some padding */
-    box-shadow: 0 0 8px rgba(0, 212, 212, 0.5); /* Teal glow that matches the "dev" color */
-  }
-  
-  .rockAnimation {
-    animation: rock 0.75s ease-in-out;
-  }
-  
-  @keyframes rock {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(10deg); }
-    75% { transform: rotate(-10deg); }
-    100% { transform: rotate(0deg); }
-  }
-  
-  .menu {
-    display: flex;
-    gap: 1rem;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    opacity: 0;
-    transform: translateY(-100%);
-    position: absolute;
-  }
-  
-  .expanded {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  
-  .navItemContainer {
-    position: relative;
-  }
-  
-  .navItem {
-    color: var(--text-light);
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 0.5rem 0.75rem;
-    transition: background-color 0.2s ease-in-out;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  
-  .navItem:hover {
-    background-color: rgba(75, 85, 99, 0.95);
-    text-decoration: none; /* Override default underline */
-  }
-  
-  .navItem.active {
-    background-color: rgba(75, 85, 99, 0.95);
-  }
-  
-  .dropdownArrow {
-    font-size: 0.6rem;
-    margin-left: 0.4rem;
-  }
-  
+
   .submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    min-width: 150px;
-    border-radius: 0 0 4px 4px;
-    overflow: hidden;
-    z-index: 1002;
+    position: relative; /* Static positioning within the flow */
+    width: 100%;
+    margin-top: 0.25rem;
+    background-color: transparent; /* Blend with parent menu */
+    border-radius: 0;
+    min-width: auto;
   }
-  
+
   .submenuItem {
-    color: var(--text-light);
-    font-size: 0.75rem;
-    padding: 0.5rem 0.75rem;
-    display: block;
-    text-decoration: none;
-    transition: background-color 0.2s ease-in-out;
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly different background */
   }
-  
   .submenuItem:hover {
-    background-color: rgba(75, 85, 99, 0.95);
+     background-color: var(--navbar-item-bg-hover);
   }
-  
-  /* Mobile (≤ 639px) */
-  @media (max-width: 639px) {
-    .navbar {
-      padding: 0.75rem 1rem;
-      background-color: rgba(0, 0, 0, 0.5); /* Slightly visible background on mobile */
-    }
-    
-    .scrolled {
-      background-color: rgba(0, 0, 0, 1);
-    }
-  
-    .logo {
-      width: 36px;
-      height: 36px;
-    }
-  
-    .menu {
-      position: fixed;
-      top: 56px; /* Height of navbar */
-      right: 0;
-      width: 100%;
-      flex-direction: column;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 0.5rem;
-      transform: translateY(-150%);
-    }
-  
-    .expanded {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  
-    .navItem {
-      text-align: center;
-      padding: 0.75rem 0.5rem;
-      margin: 0.25rem 0;
-      justify-content: center;
-    }
-    
-    .submenu {
-      position: relative;
-      width: 100%;
-      margin-top: 0.25rem;
-    }
-  
-    .submenuItem {
-      text-align: center;
-      padding: 0.75rem 0.5rem;
-    }
+}
+
+/* Narrow (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .navbar {
+    padding: 0.75rem 1.5rem;
   }
-  
-  /* Narrow (640px - 1023px) */
-  @media (min-width: 640px) and (max-width: 1023px) {
-    .navbar {
-      padding: 0.75rem 1.5rem;
-    }
-  
-    .menu {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      width: auto;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 0.5rem;
-      transform: translateY(-150%);
-      border-radius: 0 0 0 8px;
-    }
-  
-    .expanded {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    .submenu {
-      min-width: 180px;
-    }
+  /* Menu uses default absolute positioning */
+  .submenu {
+    min-width: 180px;
   }
-  
-  /* Wide (≥ 1024px) */
-  @media (min-width: 1024px) {
-    .navbar {
-      padding: 0.75rem 2rem;
-    }
-  
-    .menu {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 0.5rem;
-      border-radius: 0 0 0 8px;
-    }
-    
-    .expanded {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    /* When navbar is not scrolled, add subtle hover effect to nav items for better visibility */
-    .navbar:not(.scrolled) .navItem:hover {
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    
-    .submenu {
-      min-width: 180px;
-    }
+}
+
+/* Wide (≥ 1024px) */
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 0.75rem 2rem;
   }
+  /* Menu uses default absolute positioning */
+  .submenu {
+    min-width: 180px;
+  }
+
+  /* When navbar is not scrolled, add subtle hover effect for better visibility */
+  .navbar:not(.scrolled) .navItem:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Keep specific subtle hover */
+  }
+  .navbar:not(.scrolled) .submenuItem:hover {
+     background-color: rgba(0, 0, 0, 0.5);
+  }
+}

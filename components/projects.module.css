@@ -1,177 +1,192 @@
-.section {
-    padding: 5rem 0;
-    background-color: #1a2a2a;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  .sectionTitle {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 2rem;
-    border-bottom: 3px solid #4682b4;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  
-  .card {
-    background: linear-gradient(145deg, #2f4f4f, #1e3a3a);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 2px solid #4682b4;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-    border-color: #6b8e23;
-  }
-  
-  .cardContent {
-    padding: 1.5rem;
-  }
-  
-  .cardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    cursor: pointer; /* Add cursor pointer to indicate the header is clickable */
-  }
-  
-  .headerLeft {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-  
-  .headerRight {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .cardTitle {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ffffff;
-  }
-  
-  .titleLink {
-    color: #4682b4;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .titleLink:hover {
-    color: #6b8e23;
-    text-decoration: underline;
-  }
-  
-  .subtitle {
-    font-size: 0.95rem;
-    color: #b0c4de;
-    font-weight: 400;
-    line-height: 1.4;
-  }
-  
-  .period {
-    font-size: 0.9rem;
-    color: #a0a0a0;
-    font-style: italic;
-  }
-  
-  
-  .collapsibleContent {
-    overflow: hidden;
-  }
-  
-  .description {
-    font-size: 1rem;
-    color: #d3d3d3;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  
-  .technologies {
-    margin-bottom: 1.5rem;
-  }
-  
-  .techTitle {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #4682b4;
-    margin-bottom: 0.75rem;
-  }
-  
-  .techTags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .techTag {
-    background: #1e1e1e;
-    color: #ffffff;
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.4rem 1rem;
-    border-radius: 12px;
-    border: 1px solid #4682b4;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .techTag:hover {
-    background: #4682b4;
-    color: #ffffff;
-    border-color: #6b8e23;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .outcome {
-    margin-bottom: 1rem;
-  }
-  
-  .outcomeTitle {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #4682b4;
-    margin-bottom: 0.75rem;
-  }
-  
-  .outcomeText {
-    font-size: 0.9rem;
-    color: #d3d3d3;
-    line-height: 1.5;
-  }
+/* projects.module.css */
 
-  .titleWithImage {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* Matches spacing patterns in global styles */
-  }
-  
-  .projectImage {
-    width: 75px;
-    height: 75px;
-    object-fit: cover; /* Ensures the image fills the space nicely */
-    border-radius: 8px; /* Consistent with card border-radius adjusted for scale */
-    border: none; /* Removes the border */
-  }
+.section {
+  padding: 5rem 0; /* Keep specific padding */
+  background-color: var(--background-darker); /* Use variable */
+}
+
+/* Re-introduce container for section-specific padding */
+.container {
+  max-width: 1200px; /* Match global */
+  margin: 0 auto;
+  padding: 2rem; /* Add padding to reveal background */
+  /* Optional: border: 1px solid var(--card-border); /* Add if explicit border is desired */
+}
+
+/* Re-introduce sectionTitle to match global centered style */
+.sectionTitle {
+  font-size: 2.5rem; /* Match global */
+  margin-bottom: 2rem; /* Match global */
+  text-align: center; /* Match global */
+  position: relative; /* Match global */
+  color: var(--text-light); /* Match global */
+  padding-bottom: 1rem; /* Match global */
+  display: block; /* Ensure it takes full width for centering */
+}
+
+.sectionTitle:after {
+  content: ''; /* Match global */
+  position: absolute; /* Match global */
+  width: 60px; /* Match global */
+  height: 4px; /* Match global */
+  background-color: var(--primary-accent-blue); /* Match global */
+  bottom: 0; /* Match global */
+  left: 50%; /* Match global */
+  transform: translateX(-50%); /* Match global */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: linear-gradient(145deg, var(--dark-slate-gray), var(--background-darker)); /* Use variables */
+  border-radius: 16px; /* Keep specific radius */
+  overflow: hidden;
+  border: 2px solid var(--primary-blue); /* Use variable */
+  box-shadow: var(--box-shadow-md); /* Use variable */
+  transition: var(--transition-standard); /* Use variable */
+}
+
+.card:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: var(--box-shadow-lg); /* Use variable */
+  border-color: var(--secondary-green); /* Use variable */
+}
+
+.cardContent {
+  padding: 1.5rem;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  cursor: pointer; /* Keep for clickable header */
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light); /* Use variable */
+}
+
+/* Uses global 'a' styles for base color/transition */
+.titleLink {
+  color: var(--primary-blue); /* Override global link color if needed */
+  text-decoration: none; /* Keep no underline */
+}
+
+.titleLink:hover {
+  color: var(--secondary-green); /* Use variable */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted); /* Use variable */
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.period {
+  font-size: 0.9rem;
+  color: var(--text-muted); /* Use variable */
+  font-style: italic;
+}
+
+
+.collapsibleContent {
+  overflow: hidden;
+  /* Animation handled by external library or JS */
+}
+
+/* Uses global 'p' styles for base font/line-height/margin */
+.description {
+  color: var(--text-muted); /* Use variable */
+  margin-bottom: 1.5rem; /* Override default margin */
+}
+
+.technologies {
+  margin-bottom: 1.5rem;
+}
+
+.techTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-blue); /* Use variable */
+  margin-bottom: 0.75rem;
+}
+
+.techTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.techTag {
+  background: var(--background-dark); /* Use variable */
+  color: var(--text-light); /* Use variable */
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border-radius: 12px; /* Keep specific radius */
+  border: 1px solid var(--primary-blue); /* Use variable */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Keep subtle shadow or use --box-shadow-sm? */
+  transition: var(--transition-standard); /* Use variable */
+}
+
+.techTag:hover {
+  background: var(--primary-blue); /* Use variable */
+  color: var(--text-light); /* Use variable */
+  border-color: var(--secondary-green); /* Use variable */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Keep subtle shadow or use --box-shadow-md? */
+}
+
+.outcome {
+  margin-bottom: 1rem;
+}
+
+.outcomeTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-blue); /* Use variable */
+  margin-bottom: 0.75rem;
+}
+
+.outcomeText {
+  font-size: 0.9rem;
+  color: var(--text-muted); /* Use variable */
+  line-height: 1.5;
+}
+
+.titleWithImage {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.projectImage {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 8px; /* Keep specific radius */
+  border: none;
+}

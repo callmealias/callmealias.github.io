@@ -1,159 +1,127 @@
 /* about.module.css */
 
+/* Uses .section-standard from globals.css for padding/background */
 .aboutSection {
-    background-color: var(--background-dark);
-    padding-top: var(--section-padding-y);
-    padding-bottom: var(--section-padding-y);
-    color: var(--text-muted);
-  }
-  
+  /* background-color: var(--background-dark); /* Keep if different from global */
+  color: var(--text-muted);
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem; /* Specific to this layout */
+}
+
+/* Uses .card-standard from globals.css for base styles */
+.aboutText {
+  width: 100%;
+  /* Inherits background, padding, border, radius, shadow, transition from .card-standard */
+  /* Hover effect inherited from .card-standard:hover */
+}
+
+.aboutHeading {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  position: relative;
+  padding-bottom: 0.75rem;
+  display: inline-block; /* Apply underline correctly */
+}
+
+/* Local underline style (kept due to specific width) */
+.aboutHeading:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 3rem;
+  height: 3px;
+  background-color: var(--primary-blue);
+}
+
+/* .aboutParagraph removed - use default <p> styles */
+
+.aboutSidebar {
+  width: 100%;
+}
+
+/* Uses .card-standard from globals.css for base styles */
+.languageCard {
+  /* Inherits padding, border, radius, shadow, transition from .card-standard */
+  background-color: var(--dark-slate-gray); /* Override background */
+  /* Hover effect inherited from .card-standard:hover */
+}
+
+.cardHeading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  position: relative;
+  padding-bottom: 0.75rem;
+  display: inline-block; /* Apply underline correctly */
+}
+
+/* Local underline style (kept due to specific width) */
+.cardHeading:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2rem; /* Different width than .aboutHeading */
+  height: 3px;
+  background-color: var(--primary-blue);
+}
+
+.languageItem {
+  margin-bottom: 1.5rem;
+}
+
+.languageItem:last-child {
+  margin-bottom: 0;
+}
+
+.languageHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.languageLevel {
+  color: var(--primary-blue);
+  font-weight: 500;
+}
+
+/* .progressBar and .progressFill removed - use .progress-bar-standard and .progress-fill-standard from globals.css in the component */
+
+/* Responsive design */
+@media (min-width: 768px) {
   .aboutContent {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 3rem;
+    flex-direction: row;
   }
-  
+
   .aboutText {
-    width: 100%;
-    background-color: rgba(55, 65, 81, 0.1);
-    border-radius: var(--border-radius);
-    padding: var(--card-padding);
-    border: 1px solid var(--card-border);
-    box-shadow: var(--box-shadow-sm);
+    width: 66.66%;
   }
-  
-  .aboutHeading {
-    font-size: 1.75rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: var(--text-light);
-    position: relative;
-    padding-bottom: 0.75rem;
-  }
-  
-  .aboutHeading:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 3rem;
-    height: 3px;
-    background-color: var(--primary-blue);
-  }
-  
-  .aboutParagraph {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-  
+
   .aboutSidebar {
-    width: 100%;
+    width: 33.33%;
   }
-  
-  .languageCard {
-    background-color: var(--dark-slate-gray);
-    padding: var(--card-padding);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-sm);
-    border: 1px solid var(--card-border);
-  }
-  
-  .cardHeading {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: var(--text-light);
-    position: relative;
-    padding-bottom: 0.75rem;
-  }
-  
-  .cardHeading:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 2rem;
-    height: 3px;
-    background-color: var(--primary-blue);
-  }
-  
-  .languageItem {
-    margin-bottom: 1.5rem;
-  }
-  
-  .languageItem:last-child {
-    margin-bottom: 0;
-  }
-  
-  .languageHeader {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    align-items: center;
-  }
-  
-  .languageLevel {
-    color: var(--primary-blue);
-    font-weight: 500;
-  }
-  
-  .progressBar {
-    width: 100%;
-    height: 0.5rem;
-    background-color: rgba(128, 128, 128, 0.3);
-    border-radius: 999px;
-    overflow: hidden;
-  }
-  
-  .progressFill {
-    height: 100%;
-    background-color: var(--primary-blue);
-    border-radius: 999px;
-    transition: width 1s ease-in-out;
-  }
-  
-  /* Responsive design for tablets and larger screens */
-  @media (min-width: 768px) {
-    .aboutContent {
-      flex-direction: row;
-    }
-  
-    .aboutText {
-      width: 66.66%;
-    }
-  
-    .aboutSidebar {
-      width: 33.33%;
-    }
-  }
-  
-  /* Hover effects */
-  .languageCard:hover {
-    transform: translateY(-5px);
-    transition: var(--transition-standard);
-  }
-  
-  .aboutText:hover {
-    border-color: rgba(70, 130, 180, 0.3);
-    transition: var(--transition-standard);
-  }
+}
 
-  /* Add to about.module.css */
-
+/* Accordion styles specific to this component if needed, otherwise rely on global */
 .accordionHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .accordionIcon {
-    font-size: 1.5rem;
-    color: var(--text-light);
-  }
-  
-  .accordionContent {
-    margin-top: 1rem;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* .accordionIcon removed - use global style */
+
+.accordionContent {
+  margin-top: 1rem;
+}
