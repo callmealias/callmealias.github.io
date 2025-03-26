@@ -20,11 +20,11 @@ export default function Contact() {
     });
   };
 
+  
   return (
-    <section id="contact" className="py-20 min-h-[calc(100vh-80px)] flex items-center">
+    <section id="contact" className="py-20 min-h-[calc(100vh-80px)] flex items-center justify-center"> {/* Added justify-center */}
       <div className="container mx-auto px-4">
         <h2 className="section-title">Contact Me</h2>
-        
         <div className="mt-12 max-w-3xl mx-auto w-full" ref={ref}>
           <motion.div
             className="bg-[#2F4F4F] rounded-lg shadow-lg p-8"
