@@ -131,22 +131,26 @@ export default function Resume() {
             transition={{ duration: 0.6 }}
           >
             <div className={styles.actionBar}>
-              <button
+              {/* Changed button to a tag */}
+              <a
+                href="#"
                 className={styles.actionButton}
-                onClick={() => window.open('/resume.pdf', '_blank')}
+                onClick={(e) => { e.preventDefault(); window.open('/resume.pdf', '_blank'); }}
                 title="View Fullscreen"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                {/* Removed inline styles, reverted size */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                  <path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/>
                 </svg>
-              </button>
+              </a>
 
               <button
                 className={styles.actionButton}
                 onClick={() => window.print()}
                 title="Print Resume"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                {/* Removed inline styles, reverted size */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                   <path d="M6 9V2h12v7"></path>
                   <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                   <path d="M18 14H6v6h12v-6z"></path>
@@ -159,7 +163,8 @@ export default function Resume() {
                 className={styles.actionButton}
                 title="Download Resume"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                {/* Removed inline styles, reverted size */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>

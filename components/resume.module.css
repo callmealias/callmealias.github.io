@@ -71,12 +71,12 @@
 }
 
 .actionButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    /* Removed flex properties */
+    padding: 0.5rem; /* Keep padding */
     background-color: transparent;
+    color: var(--text-light);
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     color: var(--text-light);
     border-radius: 2px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -91,15 +91,18 @@
 
 .actionButton:active {
     background-color: rgba(0, 0, 0, 0.15);
-}
-
-.actionButton svg {
+  }
+  
+  /* Reverted .actionButton svg rule */
+  .actionButton svg {
     stroke: var(--text-light);
     stroke-width: 2.5;
     fill: none;
-}
-
-.resumePreview {
+    stroke-linecap: round; /* Added back */
+    stroke-linejoin: round; /* Added back */
+  }
+  
+  .resumePreview {
     width: 100%;
     height: 100%;
     background-color: var(--background-dark);
