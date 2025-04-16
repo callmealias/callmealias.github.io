@@ -32,15 +32,14 @@ export default function Skills() {
         </svg>
       ),
       skills: [
-        { name: "C#", level: 90 },
+        { name: "C#/.Net", level: 90 },
         { name: "C/C++", level: 85 },
         { name: "PHP", level: 80 },
-        { name: "JavaScript", level: 85 },
-        { name: "Vue.js", level: 85 },
-        { name: "Nuxt.js", level: 80 },
-        { name: ".NET", level: 90 },
         { name: "Laravel", level: 75 },
-        { name: "Node.js", level: 80 },
+        { name: "JavaScript", level: 85 },
+        { name: "Vue.js / Nuxt.js", level: 85 },
+        { name: "React.js / Next.js", level: 80 },
+        { name: "Node.js/npm", level: 80 },
         { name: "Win32 API", level: 85 },
         { name: "Android SDK/NDK", level: 75 },
         { name: "ARM Assembly", level: 70 },
@@ -156,7 +155,7 @@ export default function Skills() {
                       transition={{ duration: 0.4, delay: 0.1 + skillIndex * 0.05 }}
                     >
                       <div className={styles.skillInfo}>
-                        <span className={styles.skillName}>{skill.name}</span>
+                        <span className={styles.skillName} data-skill={skill.name}>{skill.name}</span>
                         <span className={styles.skillLevel}>{skill.level}%</span>
                       </div>
                       <div className={styles.progressBarContainer}>

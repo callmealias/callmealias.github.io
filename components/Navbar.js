@@ -45,19 +45,6 @@ export default function Navbar() {
     setTimeout(() => setIsRocking(false), 1000);
   };
 
-  // For larger screens, we'll show the menu on hover
-  const handleNavHover = () => {
-    if (!isRocking) {
-      setIsRocking(true);
-      setTimeout(() => setIsRocking(false), 1000);
-    }
-    setIsExpanded(true);
-  };
-
-  const handleNavLeave = () => {
-    setIsExpanded(false);
-    setActiveDropdown(null);
-  };
 
   const handleMenuClick = () => {
     setIsExpanded(false);
@@ -90,8 +77,6 @@ export default function Navbar() {
     >
       <div 
         className={styles.logoContainer}
-        onMouseEnter={handleNavHover}
-        onMouseLeave={handleNavLeave}
       >
         <div
           className={`${styles.logo} ${isRocking ? styles.rockAnimation : ''}`}

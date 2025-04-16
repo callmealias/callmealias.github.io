@@ -148,6 +148,11 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  background-color: var(--category-header-bg);
+  margin: calc(-1 * var(--card-padding));
+  margin-bottom: 0;
+  padding: var(--card-padding);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 /* .accordionIcon removed - use global style */
