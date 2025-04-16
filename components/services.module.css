@@ -35,9 +35,12 @@
 
 /* Uses .card-standard for base styles */
 .serviceCard {
-    /* Inherits background, padding, border-radius, border, transition */
+    /* Inherits background, transition */
     position: relative; /* For pseudo-element */
     overflow: hidden; /* For pseudo-element */
+    border-radius: 1rem; /* Override card-standard border-radius */
+    padding: 2.5rem; /* Increased padding */
+    border: 2px solid var(--card-border); /* Thicker border */
 }
 
 /* Uses .card-standard:hover for base hover */

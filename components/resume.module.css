@@ -71,6 +71,7 @@
 .actionBar {
     display: flex;
     justify-content: center;
+    align-items: center; /* Vertically align items */
     gap: 0.5rem;
     margin-bottom: 1.5rem;
     background-color: var(--action-button-bg); /* Use variable */
@@ -89,7 +90,9 @@
     /* display: flex; Removed - parent .actionBar handles button alignment */
     /* align-items: center; Removed */
     /* justify-content: center; Removed */
-    line-height: 0; /* Helps center SVG vertically if needed */
+    line-height: normal; /* Reset line-height for text buttons */
+    /* Add specific padding for text buttons if needed */
+    padding: 0.5rem 0.75rem; /* Adjust padding for text */
 }
 
 .actionButton:hover {
@@ -109,6 +112,7 @@
     stroke-linejoin: round;
     width: 1em; /* Ensure consistent icon size */
     height: 1em;
+    vertical-align: middle; /* Align SVG with text */
 }
 
 .resumePreview {
@@ -124,42 +128,19 @@
 
 .pdfViewerContainer {
     width: 100%;
-    /* height: 100%; Removed */
+    max-height: 500px; /* Limit the viewable height */
     background-color: var(--background-dark); /* Use variable */
     border-radius: 8px;
-    overflow: hidden;
+    overflow-y: auto; /* Enable vertical scroll */
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; Removed to allow top alignment */
     min-height: 400px; /* Add min-height for loading/error states */
 }
 
-.navButtons {
-    position: absolute;
-    bottom: 1rem;
-    display: flex;
-    gap: 1rem;
-    z-index: 10;
-}
-
-/* Uses global .button styles */
-.navButton {
-    /* Inherits base styles from .button */
-    padding: 0.5rem 1rem; /* Override padding */
-}
-
-/* Inherits hover from .button:hover */
-.navButton:hover {
-    /* Inherits background, transform */
-}
-
-.navButton:disabled {
-    background-color: var(--text-muted); /* Use variable */
-    cursor: not-allowed;
-    transform: none; /* Disable hover transform */
-}
+/* .navButtons and .navButton styles removed as they are no longer used */
 
 .pdfCanvas {
     width: 100%;
@@ -170,9 +151,10 @@
 .pageInfo {
     color: var(--text-light);
     font-size: 0.9rem;
-    margin: 0 0.5rem;
-    display: flex;
-    align-items: center;
+    margin: 0 0.5rem; /* Keep margin */
+    /* display: flex; Removed - parent .actionBar handles alignment */
+    /* align-items: center; Removed */
+    white-space: nowrap; /* Prevent wrapping */
 }
 
 .loaderContainer,

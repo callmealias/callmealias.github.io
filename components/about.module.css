@@ -78,16 +78,6 @@
   display: inline-block; /* Apply underline correctly */
 }
 
-/* Local underline style (kept due to specific width) */
-.cardHeading:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 2rem; /* Different width than .aboutHeading */
-  height: 3px;
-  background-color: var(--primary-blue);
-  }
   
   /* Wrapper for icon + title in language card header */
   .languageTitleWrapper {

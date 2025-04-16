@@ -25,7 +25,6 @@ export default function Contact() {
     <section id="contact" className="py-20 min-h-[calc(100vh-80px)] flex items-center justify-center"> {/* Added justify-center */}
       <div className="container mx-auto px-4">
         <h2 className="section-title">Contact Me</h2>
-        {/* Removed the intermediate div and moved classes/ref to motion.div */}
         <motion.div
           ref={ref} // Moved ref here
           className="mt-12 max-w-3xl mx-auto bg-[#2F4F4F] rounded-lg shadow-lg p-8" // Moved classes here and removed w-full, flex, justify-center

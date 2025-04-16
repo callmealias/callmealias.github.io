@@ -170,6 +170,29 @@ export default function Resume() {
                   <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
               </a>
+              
+              {/* Moved Page Navigation Buttons */}
+              {numPages > 1 && (
+                <>
+                  <button
+                    onClick={goToPreviousPage}
+                    disabled={pageNumber <= 1}
+                    className={styles.actionButton} /* Changed class */
+                    title="Previous Page"
+                  >
+                    &lt; Prev
+                  </button>
+                  <span className={styles.pageInfo}>{pageNumber} / {numPages}</span>
+                  <button
+                    onClick={goToNextPage}
+                    disabled={pageNumber >= numPages}
+                    className={styles.actionButton} /* Changed class */
+                    title="Next Page"
+                  >
+                    Next &gt;
+                  </button>
+                </>
+              )}
             </div>
 
             <motion.div
@@ -198,24 +221,7 @@ export default function Resume() {
                 ) : (
                   <>
                     <canvas ref={canvasRef} className={styles.pdfCanvas} />
-                    {numPages > 1 && (
-                      <div className={styles.navButtons}>
-                        <button
-                          onClick={goToPreviousPage}
-                          disabled={pageNumber <= 1}
-                          className={styles.navButton}
-                        >
-                          Previous
-                        </button>
-                        <button
-                          onClick={goToNextPage}
-                          disabled={pageNumber >= numPages}
-                          className={styles.navButton}
-                        >
-                          Next
-                        </button>
-                      </div>
-                    )}
+                    {/* Navigation buttons moved to actionBar */}
                   </>
                 )}
               </div>

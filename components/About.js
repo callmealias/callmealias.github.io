@@ -47,7 +47,7 @@ export default function About() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className={styles.aboutHeading}>Kashif Hasan – A Man of Many Skills</h3>
+            <h3 className={styles.aboutHeading}>A Man of Many Skills</h3>
             
             <p className={styles.aboutParagraph}>
               I&apos;m not just a techie I&apos;m also a yogi, a rock climber, a traveller, and artist. My natural curiousity has taken me far and wide. Thoughout it all I&apos;ve learned that regular consitent effort and knowing how to recognize what&apos;s actually important and focus on the task at hand have led to me consistently exceeding expectations.
