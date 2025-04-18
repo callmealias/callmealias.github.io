@@ -32,18 +32,19 @@ export default function Skills() {
         </svg>
       ),
       skills: [
-        { name: "C#/.Net", level: 90 },
-        { name: "C/C++", level: 85 },
+        { name: "C# /.Net", level: 90 },
+        { name: "C / C++", level: 85 },
         { name: "PHP", level: 80 },
         { name: "Laravel", level: 75 },
         { name: "JavaScript", level: 85 },
         { name: "Vue.js / Nuxt.js", level: 85 },
         { name: "React.js / Next.js", level: 80 },
-        { name: "Node.js/npm", level: 80 },
+        { name: "Node.js / npm", level: 80 },
+        { name: "Python", level: 75 },
         { name: "Win32 API", level: 85 },
-        { name: "Android SDK/NDK", level: 75 },
+        { name: "Android SDK / NDK", level: 75 },
         { name: "ARM Assembly", level: 70 },
-        { name: "SQL / MySql", level: 85 },
+        { name: "SQL / TSQL", level: 85 },
       ]
     },
     {
@@ -55,6 +56,8 @@ export default function Skills() {
       ),
       skills: [
         { name: "AWS (ECS/EC2)", level: 85 },
+        { name: "Azure", level: 75 },
+        { name: "GCloud", level: 80 },
         { name: "Google Ads Api", level: 80 },
         { name: "Facebook Api", level: 85 },
         { name: "Windows Driver Model (WDM)", level: 90 },
@@ -87,7 +90,9 @@ export default function Skills() {
         { name: "ChatGPT", level: 85 },
         { name: "Claude", level: 80 },
         { name: "Gemini", level: 75 },
-        { name: "Suno", level: 70 }
+        { name: "Grok", level: 75 },
+        { name: "Suno", level: 85 },
+        { name: "Kling AI", level: 85 }
       ]
     },
     {
@@ -102,7 +107,8 @@ export default function Skills() {
         { name: "Event Driven Architecture", level: 85 },
         { name: "Embedded systems", level: 85 },
         { name: "Kernel-mode drivers", level: 90 },
-        { name: "Distributed services", level: 90 }
+        { name: "Distributed services", level: 90 },
+        { name: "N-Tier Architecture", level: 90 }
       ]
     }
   ];
